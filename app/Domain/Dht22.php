@@ -12,7 +12,7 @@ class DHT22 extends Gpio
         // usage: loldht <pin> (<tries>)
         $return_var = 0;
         exec('sudo loldht '.$this->getPinId(), $output, $return_var);
-        
+        return $output;
     }
 
 }
