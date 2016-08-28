@@ -16,7 +16,9 @@ class SensorController extends Controller
     {
         $dht22 = new DHT22($this->getDht22Pin());
         echo "test";
-        echo $dht22->read();
+        echo "<pre>";
+        var_dump($dht22->read());
+        echo "</pre>";
     }
 
     private function getDht22Pin() {
