@@ -3,24 +3,16 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Fixed Layout
-                <small>Blank example to the fixed layout</small>
+                Dashboard - Home
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Layout</a></li>
-                <li class="active">Fixed</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li class="active">Home</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <div class="callout callout-info">
-                <h4>Tip!</h4>
-
-                <p>Add the fixed class to the body tag to get this layout. The fixed layout is your best option if your sidebar
-                    is bigger than your content because it prevents extra unwanted scrolling.</p>
-            </div>
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
