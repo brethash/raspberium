@@ -6,3 +6,7 @@ Things to note:
  * Supports a rain sensor!
  * Supports up to 4 relays out of the box. Easy to add more!
  * It's free! And AWESOME!
+
+For wiring help, check out this Raspberry Pi 3 GPIO Header diagram:
+![Raspberry Pi 3 GPIO Header diagram](https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-10-339300/pi3_gpio.png "Raspberry Pi 3 GPIO Header diagram")
+[Source](https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-10-339300/pi3_gpio.png)
