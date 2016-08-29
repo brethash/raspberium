@@ -1,4 +1,4 @@
-# Raspberium - The best free terrarium/vivarium/aquarium controller for the Raspbery Pi
+# Raspberium - The best free terrarium/vivarium/aquarium controller for the Raspberry Pi
 
 Things to note:
  * Built on Laravel 5.3!
