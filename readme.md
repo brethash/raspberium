@@ -1,6 +1,6 @@
 # Raspberium - The best free terrarium/vivarium/aquarium controller for the Raspberry Pi
 
-Things to note:
+Features:
  * Built on Laravel 5.3!
  * Supports DHT22 temperature/humidity sensor!
  * Supports a rain sensor!
@@ -8,7 +8,7 @@ Things to note:
  * It's free! And AWESOME!
  
 ## Prerequisites
- * Requires [loldht](https://github.com/technion/lol_dht22) library for the DHT22 sensor. Make sure the script is installed at /usr/bin/loldht
+ * Requires [loldht](https://github.com/technion/lol_dht22) library for the DHT22 sensor. Make sure the script is installed at /usr/bin/loldht.
  
 ## Notes
  * Frontend template is based on: [AdminLTE Control Panel Template by Almsteed Studio](https://almsaeedstudio.com/)
