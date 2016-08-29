@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('sensors', 'SensorController@readDht22');
+Route::get('sensors/temperature', 'SensorController@getTemperature');
+Route::get('sensors/humidity', 'SensorController@getHumidity');
