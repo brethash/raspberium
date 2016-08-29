@@ -4,6 +4,8 @@ namespace Raspberium\Domain;
 
 use Raspberium\Contracts\Gpio;
 
+
+// TODO: is there a way to know if the relay is already "on"?
 class Relay extends Gpio
 {
     /**
@@ -27,5 +29,20 @@ class Relay extends Gpio
             return false;
         else
             return true;
+    }
+    
+    public static function getMistingSystemPin()
+    {
+        return env('MISTING_SYSTEM_PIN', false);
+    }
+
+    public static function getLight1Pin()
+    {
+        return env('LIGHT_1_GPIO_PIN', false);
+    }
+
+    public static function getLight2Pin()
+    {
+        return env('LIGHT_2_GPIO_PIN', false);
     }
 }
