@@ -10,8 +10,9 @@ Things to note:
 ## Prerequisites
  * Requires [loldht](https://github.com/technion/lol_dht22) library for the DHT22 sensor. Make sure the script is installed at /usr/bin/loldht
  
-Frontend template is based on: [AdminLTE Control Panel Template by Almsteed Studio](https://almsaeedstudio.com/)
+## Notes
+ * Frontend template is based on: [AdminLTE Control Panel Template by Almsteed Studio](https://almsaeedstudio.com/)
 
-For wiring help, check out this Raspberry Pi 3 GPIO Header diagram:
+ * For wiring help, check out this Raspberry Pi 3 GPIO Header diagram:
 ![Raspberry Pi 3 GPIO Header diagram](https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-10-339300/pi3_gpio.png "Raspberry Pi 3 GPIO Header diagram")
 [Source](https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-10-339300/pi3_gpio.png)
