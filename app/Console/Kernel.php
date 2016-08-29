@@ -4,6 +4,7 @@ namespace Raspberium\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Raspberium\Domain\Trigger;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +25,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        
+        // Check the humidity every minutre
+        $schedule->call(Trigger::checkHumidity())->everyMinute();
+        
+        // Turn the lights on at 8am MST
+        $schedule->call(Trigger::lightsOn())->dailyAt('8:00')->timezone('America/Denver');
+
+        // Turn the lights off at 9pm MST
+        $schedule->call(Trigger::lightsOff())->dailyAt('21:00')->timezone('America/Denver');
     }
 
     /**
