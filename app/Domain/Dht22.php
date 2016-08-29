@@ -36,4 +36,8 @@ class DHT22 extends Gpio
         return explode('%',$output);
     }
 
+    public static function getDht22Pin() {
+        return env('DHT22_PIN', false);
+    }
+
 }
