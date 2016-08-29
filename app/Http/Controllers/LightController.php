@@ -64,11 +64,4 @@ class LightController extends Controller
         echo 'flerp';
     }
 
-    private function getLight1Pin() {
-        return env('LIGHT_1_GPIO_PIN', false);
-    }
-
-    private function getLight2Pin() {
-        return env('LIGHT_2_GPIO_PIN', false);
-    }
 }
