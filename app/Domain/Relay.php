@@ -5,10 +5,12 @@ namespace Raspberium\Domain;
 use Raspberium\Contracts\Gpio;
 
 
-// TODO: is there a way to know if the relay is already "on"?
+// TODO: is there a way to know if the relay is already "on"? Get the current state?
 class Relay extends Gpio
 {
     /**
+     * Switches the relay to "on"
+     *
      * @return bool
      */
     public function on() {
@@ -20,6 +22,8 @@ class Relay extends Gpio
     }
 
     /**
+     * Switches the relay to "off"
+     *
      * @return bool
      */
     public function off() {
