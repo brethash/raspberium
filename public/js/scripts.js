@@ -15,7 +15,6 @@ $(function(){
         redFrom: 10, redTo: 30,
         yellowFrom: 30, yellowTo: 55,
         greenFrom: 55, greenTo: 100,
-
         minorTicks: 5,
         min: 10,
         max: 100
@@ -30,7 +29,8 @@ $(function(){
         $.get({
             url: '/sensors/humidity',
             success: function(data){
-                updateGauge('humidityGauge','Humidity', data, humidityOptions);
+                if (data != '')
+                    updateGauge('humidityGauge','Humidity', data, humidityOptions);
             }
         })
     });
@@ -40,7 +40,8 @@ $(function(){
         $.get({
             url: '/sensors/temperature',
             success: function(data){
-                updateGauge('temperatureGauge','Temp', data, temperatureOptions);
+                if (data != '')
+                    updateGauge('temperatureGauge','Temp', data, temperatureOptions);
             }
         })
     });
@@ -50,9 +51,6 @@ $(function(){
 
 google.load("visualization", "1", {packages:["gauge"]});
     //google.setOnLoadCallback(updateGauge);
-
-
-
 
 function updateGauge(id,label,newData,options) {
 
