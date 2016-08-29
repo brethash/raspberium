@@ -24,7 +24,7 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Title</h3>
+                    <h3 class="box-title">Monitoring</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -34,32 +34,11 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div id="viv1temp_div"></div>
-                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-                    <script type="text/javascript">
-                        google.load("visualization", "1", {packages:["gauge"]});
-                        google.setOnLoadCallback(drawChart);
-                        function drawChart() {
+                    <div id="humidityGauge"></div>
+                    <div id="temperatureGauge"></div>
+                    <button id="checkHumidity">Check humidity</button>
+                    <button id="checkHumidity">Check temperature</button>
 
-                            var data = google.visualization.arrayToDataTable([
-                                ['Label', 'Value'],
-                                ['1 TMP', 80]
-                            ]);
-
-                            var options = {
-                                width: 400, height: 200,
-                                redFrom: 26.6, redTo: 100,
-                                yellowFrom:20, yellowTo: 25.5,
-                                minorTicks: 5
-                            };
-
-                            var chart = new google.visualization.Gauge(document.getElementById('viv1temp_div'));
-
-                            chart.draw(data, options);
-
-
-                        }
-                    </script>
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
