@@ -27,9 +27,13 @@ class DHT22 extends Gpio
     public function getHumidity()
     {
         $splitValues = $this->getSplitValues();
-        $humidity = $splitValues[0];
-        $humidityArray = explode('=',$humidity);
-        return trim($humidityArray[1]);
+        if ($splitValues)
+        {
+            $humidity = $splitValues[0];
+            $humidityArray = explode('=',$humidity);
+            return trim($humidityArray[1]);
+        }
+        return false;
     }
 
     /**
@@ -40,26 +44,34 @@ class DHT22 extends Gpio
     public function getTemperature()
     {
         $splitValues = $this->getSplitValues();
-        $temperature = $splitValues[1];
-        $temperatureArray = explode('=',$temperature);
-        return trim(str_replace('*C','',$temperatureArray[1]));
+        if ($splitValues)
+        {
+            $temperature = $splitValues[1];
+            $temperatureArray = explode('=',$temperature);
+            return trim(str_replace('*C','',$temperatureArray[1]));
+        }
+        return false;
     }
 
     /**
      * Splits the read value from the loldht script for parsing
      *
-     * @return string
+     * @return boolean|array
      */
     private function getSplitValues()
     {
         // TODO: check if readValue is a valid array
         $readValue = $this->read();
-        $output = array_pop($readValue);
-        return explode('%',$output);
+        if (!empty($readValue))
+        {
+            $output = array_pop($readValue);
+            return explode('%',$output);
+        }
+        return false;
     }
 
     /**
-     * Gets the configued DHT22 pin number
+     * Gets the configured DHT22 pin number
      *
      * @return integer
      */
