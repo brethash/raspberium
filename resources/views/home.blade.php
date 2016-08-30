@@ -30,7 +30,7 @@
                     <div id="humidityGauge"></div>
                     <div id="temperatureGauge"></div>
                     <button id="checkHumidity">Check humidity</button>
-                    <button id="checkHumidity">Check temperature</button>
+                    <button id="checkTemperature">Check temperature</button>
 
                 </div>
                 <!-- /.box-body -->
