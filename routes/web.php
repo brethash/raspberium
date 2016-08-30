@@ -15,5 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('actions', function() {
+    return view('actions');
+});
+
 Route::get('sensors/temperature', 'SensorController@getTemperature');
 Route::get('sensors/humidity', 'SensorController@getHumidity');
+
