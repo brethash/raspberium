@@ -1,4 +1,5 @@
 @extends('layouts.master')
+    @section('title', 'Raspberium - Home')
     @section('content')
         <!-- Content Header (Page header) -->
         <section class="content-header">
