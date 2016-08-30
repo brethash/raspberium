@@ -19,10 +19,7 @@ var humidityOptions = {
 };
 
 $(function(){
-
-
-
-
+    
     updateGauge('humidityGauge','Humidity',30, humidityOptions);
     updateGauge('temperatureGauge','Temp',40, temperatureOptions);
 
@@ -48,17 +45,15 @@ $(function(){
         })
     });
 
-
 });
 
 google.load("visualization", "1", {packages:["gauge"]});
-    //google.setOnLoadCallback(updateGauge);
 
 function updateGauge(id,label,newData,options) {
 
     var data = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        [label, newData]
+        [label, parseFloat(newData)]
     ]);
 
     google.load("visualization", "1", {packages:["gauge"]});
