@@ -31,7 +31,7 @@ $(function(){
             success: function(data){
                 if (data != '') {
                     updateGauge('humidityGauge', 'Humidity', data['humidity'], humidityOptions);
-                    updateGauge('humidityTemperature', 'Temp', data['temperature'], temperatureOptions);
+                    updateGauge('temperatureGauge', 'Temp', data['temperature'], temperatureOptions);
                 }
             }
         })
