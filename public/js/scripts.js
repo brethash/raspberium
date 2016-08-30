@@ -20,6 +20,8 @@ var humidityOptions = {
 
 $(function(){
 
+    updateGauge('humidityGauge', 'Humidity', 10, humidityOptions);
+    updateGauge('temperatureGauge', 'Temp', 0, temperatureOptions);
     getTemperatureHumidity();
 
     $('#checkTemperatureHumidity').click(function(e){
