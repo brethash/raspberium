@@ -61,6 +61,7 @@ function updateGauge(id,label,newData,options) {
         [label, newData]
     ]);
 
+    google.load("visualization", "1", {packages:["gauge"]});
     var chart = new google.visualization.Gauge(document.getElementById(id));
 
     chart.draw(data, options);
