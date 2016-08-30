@@ -20,11 +20,14 @@ var humidityOptions = {
 
 $(function(){
 
-    updateGauge('humidityGauge','Humidity',30, humidityOptions);
-    updateGauge('temperatureGauge','Temp',40, temperatureOptions);
+    getTemperatureHumidity();
 
     $('#checkTemperatureHumidity').click(function(e){
         e.preventDefault();
+        getTemperatureHumidity();
+    });
+
+    function getTemperatureHumidity() {
         $.get({
             url: '/sensors/temperature-humidity',
             dataType: 'json',
@@ -35,9 +38,11 @@ $(function(){
                 }
             }
         })
-    });
+    }
 
 });
+
+
 
 google.load("visualization", "1", {packages:["gauge"]});
 
