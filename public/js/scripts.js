@@ -19,28 +19,19 @@ var humidityOptions = {
 };
 
 $(function(){
-    
+
     updateGauge('humidityGauge','Humidity',30, humidityOptions);
     updateGauge('temperatureGauge','Temp',40, temperatureOptions);
 
-    $('#checkHumidity').click(function(e){
+    $('#checkTemperatureHumidity').click(function(e){
         e.preventDefault();
         $.get({
-            url: '/sensors/humidity',
+            url: '/sensors/temperature-humidity',
             success: function(data){
-                if (data != '')
-                    updateGauge('humidityGauge','Humidity', data, humidityOptions);
-            }
-        })
-    });
-
-    $('#checkTemperature').click(function(e){
-        e.preventDefault();
-        $.get({
-            url: '/sensors/temperature',
-            success: function(data){
-                if (data != '')
-                    updateGauge('temperatureGauge','Temp', data, temperatureOptions);
+                if (data != '') {
+                    updateGauge('humidityGauge', 'Humidity', data.humidity, humidityOptions);
+                    updateGauge('humidityTemperature', 'Temp', data.temperature, temperatureOptions);
+                }
             }
         })
     });

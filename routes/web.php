@@ -21,4 +21,4 @@ Route::get('actions', function() {
 
 Route::get('sensors/temperature', 'SensorController@getTemperature');
 Route::get('sensors/humidity', 'SensorController@getHumidity');
-
+Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumidityObject');
