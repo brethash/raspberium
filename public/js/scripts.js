@@ -27,10 +27,11 @@ $(function(){
         e.preventDefault();
         $.get({
             url: '/sensors/temperature-humidity',
+            dataType: 'json',
             success: function(data){
                 if (data != '') {
-                    updateGauge('humidityGauge', 'Humidity', data.humidity, humidityOptions);
-                    updateGauge('humidityTemperature', 'Temp', data.temperature, temperatureOptions);
+                    updateGauge('humidityGauge', 'Humidity', data['humidity'], humidityOptions);
+                    updateGauge('humidityTemperature', 'Temp', data['temperature'], temperatureOptions);
                 }
             }
         })
