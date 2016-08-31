@@ -5,7 +5,7 @@ Features:
  * Supports DHT22 temperature/humidity sensor!
  * Supports a rain sensor!
  * Supports up to 4 relays out of the box. Easy to add more!
- * It's free! And AWESOME!
+ * It's free! And **AWESOME**!
  
 ## Prerequisites
  * Requires [loldht](https://github.com/technion/lol_dht22) library for the DHT22 sensor. Make sure the script is installed at /usr/bin/loldht.
