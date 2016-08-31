@@ -12,7 +12,7 @@ class Trigger {
         $mistingSystem = new Relay(Relay::getMistingSystemPin());
 
         // If the humidity is lower than the threshold, turn the misting system on
-        if ($dht22->getHumidity() < 80)
+        if ($dht22->getHumidity() < 30)
         {
             // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
             $on = $mistingSystem->on();
