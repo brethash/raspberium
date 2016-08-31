@@ -54,14 +54,6 @@ class DHT22 extends Gpio
         return false;
     }
 
-    public function getTemperatureHumidityObject()
-    {
-        $output = new \stdClass();
-        $output->humidity = $this->getHumidity();
-        $output->temperature = $this->getTemperature();
-        return $output;
-    }
-
     /**
      * Returns a convenient json object with the temperature and humidity, ripe for parsing!
      *
