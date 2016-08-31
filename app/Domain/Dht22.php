@@ -4,6 +4,7 @@ namespace Raspberium\Domain;
 
 use Raspberium\Contracts\Gpio;
 
+// TODO: Figure out how to avoid request collision w/ loldht. Something is making it hella slow. 3-9s response times???
 class DHT22 extends Gpio
 {
 
@@ -51,6 +52,14 @@ class DHT22 extends Gpio
             return trim(str_replace('*C','',$temperatureArray[1]));
         }
         return false;
+    }
+
+    public function getTemperatureHumidityObject()
+    {
+        $output = new \stdClass();
+        $output->humidity = $this->getHumidity();
+        $output->temperature = $this->getTemperature();
+        return $output;
     }
 
     /**

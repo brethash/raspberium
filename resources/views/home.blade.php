@@ -29,8 +29,7 @@
                 <div class="box-body">
                     <div id="humidityGauge"></div>
                     <div id="temperatureGauge"></div>
-                    <button id="checkHumidity">Check humidity</button>
-                    <button id="checkTemperature">Check temperature</button>
+                    <button id="checkTemperatureHumidity">Check data</button>
 
                 </div>
                 <!-- /.box-body -->
