@@ -4,6 +4,7 @@ Features:
  * Built on Laravel 5.3!
  * Supports DHT22 temperature/humidity sensor!
  * Supports a rain sensor!
+ * Supports a fan(s)!
  * Supports up to 4 relays out of the box. Easy to add more!
  * It's free! And **AWESOME**!
  
