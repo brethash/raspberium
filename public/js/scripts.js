@@ -24,6 +24,8 @@ $(function(){
     updateGauge('humidityGauge','Humidity',30, humidityOptions);
     updateGauge('temperatureGauge','Temp',40, temperatureOptions);
 
+    var interval = setInterval(getTemperatureHumidity, 7000);
+
     $('#checkHumidity').click(function(e){
         e.preventDefault();
         $.get({
