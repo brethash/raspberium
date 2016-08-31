@@ -49,4 +49,9 @@ class Relay extends Gpio
     {
         return env('LIGHT_2_GPIO_PIN', false);
     }
+
+    public static function getFanPin()
+    {
+        return env('FAN_GPIO_PIN', false);
+    }
 }

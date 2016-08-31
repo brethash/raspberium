@@ -28,6 +28,9 @@ class Kernel extends ConsoleKernel
         
         // Check the humidity every minutre
         $schedule->call(Trigger::checkHumidity())->everyMinute();
+
+        // Check the temperature every minutre
+        $schedule->call(Trigger::checkTemperature())->everyMinute();
         
         // Turn the lights on at 8am MST
         $schedule->call(Trigger::lightsOn())->dailyAt('8:00')->timezone('America/Denver');
