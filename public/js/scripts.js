@@ -22,7 +22,7 @@ $(function(){
 
     updateGauge('humidityGauge', 'Humidity', 10, humidityOptions);
     updateGauge('temperatureGauge', 'Temp', 0, temperatureOptions);
-    //getTemperatureHumidity();
+    getTemperatureHumidity();
 
     var interval = setInterval(getTemperatureHumidity, 7000);
 
