@@ -2,6 +2,7 @@
 
 namespace Raspberium\Domain;
 
+// TOOD: attach data logger to check functions to record historical data
 class Trigger {
 
     public static function checkHumidity()
@@ -24,6 +25,22 @@ class Trigger {
         }
 
         return true;
+    }
+
+    public static function checkTemperature()
+    {
+        // TODO: make temperature threshold configurable somewhere!
+        $dht22 = new DHT22(DHT22::getDht22Pin());
+        $fan = new Relay(Relay::getFanPin());
+
+        if ($dht22->getTemperature() > 85)
+        {
+            $on = $fan->on();
+        }
+        else
+        {
+            $off = $fan->off();
+        }
     }
 
     public static function lightsOn()
