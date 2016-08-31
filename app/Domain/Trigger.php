@@ -10,18 +10,24 @@ class Trigger {
         // TODO: make humidity threshold configurable somewhere!
         $dht22 = new DHT22(DHT22::getDht22Pin());
         $mistingSystem = new Relay(Relay::getMistingSystemPin());
+        $humidity = $dht22->getHumidity();
+        $threshold = 30;
 
         // If the humidity is lower than the threshold, turn the misting system on
-        if ($dht22->getHumidity() < 30)
+        if ($humidity < $threshold)
         {
             // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
             $on = $mistingSystem->on();
         }
         else
         {
-            // Turn the system off. We've reached terminal humidity!
-            // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-            $off = $mistingSystem->off();
+            // Don't turn the pump off until it hits that sweet sweet hysteresis
+            if ($humidity == $threshold){
+                // Turn the system off. We've reached terminal humidity!
+                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+                $off = $mistingSystem->off();
+            }
+
         }
 
         return true;
@@ -32,14 +38,22 @@ class Trigger {
         // TODO: make temperature threshold configurable somewhere!
         $dht22 = new DHT22(DHT22::getDht22Pin());
         $fan = new Relay(Relay::getFanPin());
+        $temperature = $dht22->getTemperature();
+        $threshold = 30;
 
-        if ($dht22->getTemperature() > 85)
+        if ($temperature > 85)
         {
             $on = $fan->on();
         }
         else
         {
-            $off = $fan->off();
+            // Don't turn the pump off until it hits that sweet sweet hysteresis
+            if ($temperature == $threshold){
+                // Turn the system off. We've reached terminal humidity!
+                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+                $off = $fan->off();
+            }
+
         }
     }
 
