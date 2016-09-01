@@ -55,6 +55,8 @@ class Trigger {
             }
 
         }
+
+        return true;
     }
 
     public static function lightsOn()
