@@ -4,7 +4,9 @@ namespace Raspberium\Domain;
 
 use Raspberium\Contracts\Gpio;
 
-// TODO: Figure out how to avoid request collision w/ loldht. Something is making it hella slow. 3-9s response times???
+// TODO: handle read() failures more better
+// TODO: Use caching to avoid collisions
+// if (curtime - cachetime < 10, use cache, else read new
 class DHT22 extends Gpio
 {
 
