@@ -41,14 +41,6 @@ $(function(){
         })
     }
 
-    // Right sidebar
-    $('form#configuration input').change(function(){
-        console.log('oh hai')
-        $('#saving').show();
-        delay(3000);
-        $('#saving').hide();
-    })
-
 });
 
 function updateGauge(id,label,newData,options) {
