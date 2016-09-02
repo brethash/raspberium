@@ -26,17 +26,25 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         
-//        // Check the humidity every minute
-//        $schedule->call(Trigger::checkHumidity())->everyMinute();
-//
-//        // Check the temperature every minute
-//        $schedule->call(Trigger::checkTemperature())->everyMinute();
-//
-//        // Turn the lights on at 8am MST
-//        $schedule->call(Trigger::lightsOn())->dailyAt('8:00')->timezone('America/Denver');
-//
-//        // Turn the lights off at 9pm MST
-//        $schedule->call(Trigger::lightsOff())->dailyAt('21:00')->timezone('America/Denver');
+        // Check the humidity every minute
+        $schedule->call(function() {
+            Trigger::checkHumidity();
+        })->everyMinute();
+
+        // Check the temperature every minute
+        $schedule->call(function() {
+            Trigger::checkTemperature();
+        })->everyMinute();
+
+        // Turn the lights on at 8am MST
+        $schedule->call(function() {
+            Trigger::lightsOn();
+        })->dailyAt('8:00')->timezone('America/Denver');
+
+        // Turn the lights off at 9pm MST
+        $schedule->call(function() {
+            Trigger::lightsOff();
+        })->dailyAt('21:00')->timezone('America/Denver');
     }
 
     /**
