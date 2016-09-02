@@ -99,6 +99,7 @@
     <!-- AdminLTE App -->
     <script src="/js/app.min.js"></script>
     <!-- Site common scripts -->
+    <script src="/js/demo.js"></script>
     <script src="/js/scripts.js"></script>
     @yield('scripts')
 
