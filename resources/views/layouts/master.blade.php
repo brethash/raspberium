@@ -98,10 +98,9 @@
     <script src="/plugins/fastclick/fastclick.js"></script>
     <!-- AdminLTE App -->
     <script src="/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="/js/demo.js"></script>
-    <!-- Google Graphs API -->
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- Site common scripts -->
     <script src="/js/scripts.js"></script>
+    @yield('scripts')
+
 </body>
 </html>

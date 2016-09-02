@@ -783,6 +783,9 @@ a:focus {
 .control-sidebar-subheading > input{
   color: #000;
 }
+#control-sidebar-settings-tab form #saving{
+  display:none;
+}
 .control-sidebar-menu {
   list-style: none;
   padding: 0;

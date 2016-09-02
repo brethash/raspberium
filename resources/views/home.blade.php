@@ -43,3 +43,8 @@
         </section>
         <!-- /.content -->
     @stop
+    @section('scripts')
+        <!-- Google Graphs API -->
+        <script src="https://www.google.com/jsapi"></script>
+        <script src="/js/home.js"></script>
+    @stop

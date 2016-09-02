@@ -16,7 +16,7 @@
     <!-- /.tab-pane -->
     <!-- Settings tab content -->
     <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post" id="thresholds">
+        <form method="post" id="configuration">
             <h3 class="control-sidebar-heading">Thresholds</h3>
 
             <div class="form-group">
@@ -34,8 +34,7 @@
                 </label>
             </div>
             <!-- /.form-group -->
-        </form>
-        <form id="timing">
+
             <h3 class="control-sidebar-heading">Timing</h3>
 
             <div class="form-group">
@@ -69,6 +68,10 @@
                 </label>
             </div>
             <!-- /.form-group -->
+
+            <p id="saving">
+                <img src="/img/gears.gif" width="30" style="margin-right: 10px"/>Saving...
+            </p>
         </form>
     </div>
     <!-- /.tab-pane -->
