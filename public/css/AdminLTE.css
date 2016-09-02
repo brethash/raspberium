@@ -780,6 +780,9 @@ a:focus {
   font-weight: 400;
   font-size: 14px;
 }
+.control-sidebar-subheading > input{
+  color: rgba(0,0,0,0);
+}
 .control-sidebar-menu {
   list-style: none;
   padding: 0;
