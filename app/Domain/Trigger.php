@@ -3,15 +3,26 @@
 namespace Raspberium\Domain;
 
 // TOOD: attach data logger to check functions to record historical data
+use Raspberium\Models\Configuration;
+
 class Trigger {
+
+    protected $configurations;
+
+    public function __construct()
+    {
+        // TODO: require this to be an int within the available GPIO range
+        $this->configurations =  Configuration::getData();
+    }
+
 
     public static function checkHumidity()
     {
-        // TODO: make humidity threshold configurable somewhere!
         $dht22 = new DHT22(DHT22::getDht22Pin());
         $mistingSystem = new Relay(Relay::getMistingSystemPin());
         $humidity = $dht22->getHumidity();
-        $threshold = 30;
+        $configurations = Trigger::getConfigurations();
+        $threshold = $configurations['humidityThreshold'];
 
         // If the humidity is lower than the threshold, turn the misting system on
         if ($humidity < $threshold)
@@ -35,11 +46,11 @@ class Trigger {
 
     public static function checkTemperature()
     {
-        // TODO: make temperature threshold configurable somewhere!
         $dht22 = new DHT22(DHT22::getDht22Pin());
         $fan = new Relay(Relay::getFanPin());
         $temperature = $dht22->getTemperature();
-        $threshold = 30;
+        $configurations = Trigger::getConfigurations();
+        $threshold = $configurations['temperatureThreshold'];
 
         if ($temperature > 85)
         {
@@ -77,5 +88,13 @@ class Trigger {
         $light1->off();
         $light2->off();
         return true;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfigurations()
+    {
+        return $this->configurations;
     }
 }
