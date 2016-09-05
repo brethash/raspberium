@@ -11,31 +11,14 @@
 |
 */
 
-// TODO: Refactor out the $data into a service provider to share w/ all views
-Route::get('/', function () {
-    $data = [
-        'temperatureThreshold' => 28,
-        'humidityThreshold' => 80,
-        'light1on' => '08:00',
-        'light1off' => '19:00',
-        'light2on' => '08:01',
-        'light2off' => '19:01'
-    ];
+use Raspberium\Models\Configuration;
 
-    return view('home', $data);
+Route::get('/', function () {
+    return view('home', Configuration::getData());
 });
 
 Route::get('actions', function() {
-    $data = [
-        'temperatureThreshold' => 28,
-        'humidityThreshold' => 80,
-        'light1on' => '08:00',
-        'light1off' => '19:00',
-        'light2on' => '08:01',
-        'light2off' => '19:01'
-    ];
-
-    return view('actions', $data);
+    return view('actions', Configuration::getData());
 });
 
 Route::get('sensors/temperature', 'SensorController@getTemperature');

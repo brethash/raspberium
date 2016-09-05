@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 1 On (HH:mm):
-                        <input type="text" name="light1on" value="{{ $light1on }}" />
+                        <input type="text" name="light1On" value="{{ $light1On }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 1 Off (HH:mm):
-                        <input type="text" name="light1off" value="{{ $light1off }}" />
+                        <input type="text" name="light1Off" value="{{ $light1Off }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 2 On (HH:mm):
-                        <input type="text" name="light2on" value="{{ $light2on }}" />
+                        <input type="text" name="light2On" value="{{ $light2On }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -53,7 +53,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 2 Off (HH:mm):
-                        <input type="text" name="light2off" value="{{ $light2off }}" />
+                        <input type="text" name="light2Off" value="{{ $light2Off }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
