@@ -14,12 +14,12 @@ class Configuration extends Model
         $configurations = Configuration::all();
 
         return [
-            'temperatureThreshold' => $configurations->where('name','temperatureThreshold')->all()->get('setting'),
-            'humidityThreshold' => $configurations->where('name','humidityThreshold'),
-            'light1On' => $configurations->where('name','light1On'),
-            'light1Off' => $configurations->where('name','light1Off'),
-            'light2On' => $configurations->where('name','light2On'),
-            'light2Off' => $configurations->where('name','light2Off')
+            'temperatureThreshold' => $configurations->where('name','temperatureThreshold')->first()['setting'],
+            'humidityThreshold' => $configurations->where('name','humidityThreshold')->first()['setting'],
+            'light1On' => $configurations->where('name','light1On')->first()['setting'],
+            'light1Off' => $configurations->where('name','light1Off')->first()['setting'],
+            'light2On' => $configurations->where('name','light2On')->first()['setting'],
+            'light2Off' => $configurations->where('name','light2Off')->first()['setting']
         ];
 
 
