@@ -2,11 +2,9 @@
 
 namespace Raspberium\Domain;
 
+use Illuminate\Support\Facades\Cache;
 use Raspberium\Contracts\Gpio;
 
-// TODO: handle read() failures more better
-// TODO: Use caching to avoid collisions
-// if (curtime - cachetime < 10, use cache, else read new
 class DHT22 extends Gpio
 {
 
@@ -63,10 +61,19 @@ class DHT22 extends Gpio
      */
     public function getTemperatureHumidityObject()
     {
-        $output = new \stdClass();
-        $output->humidity = $this->getHumidity();
-        $output->temperature = $this->getTemperature();
-        return json_encode($output);
+        $dht22 = Cache::get('dht22');
+
+        if ($dht22 == null){
+            // DHT22 reading doesn't exist in the cache
+            $output = new \stdClass();
+            $output->humidity = $this->getHumidity();
+            $output->temperature = $this->getTemperature();
+            $dht22 = json_encode($output);
+            Cache::put('dht22', $dht22, 1);
+        }
+
+        return $dht22;
+
     }
 
     /**
