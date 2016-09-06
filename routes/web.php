@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Http\Request;
 use Raspberium\Models\Configuration;
 
 Route::get('/', function () {
@@ -24,3 +25,7 @@ Route::get('actions', function() {
 Route::get('sensors/temperature', 'SensorController@getTemperature');
 Route::get('sensors/humidity', 'SensorController@getHumidity');
 Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumidityObject');
+
+Route::get('configuration/update', function(Request $request) {
+    return Configuration::saveConfiguration($request->all());
+});

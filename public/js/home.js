@@ -1,3 +1,5 @@
+"use strict";
+
 var temperatureOptions = {
     width: 400, height: 200,
     yellowFrom: 0, yellowTo: 20,

@@ -9,7 +9,8 @@ class Configuration extends Model
     protected $table = 'configurations';
     public $timestamps = false;
 
-    public static function getData() {
+    public static function getData()
+    {
 
         $configurations = Configuration::all();
 
@@ -23,6 +24,19 @@ class Configuration extends Model
         ];
 
 
+    }
+
+    public static function saveConfiguration($request)
+    {
+        foreach($request as $key => $value)
+        {
+            Configuration::where('name', $key)
+                ->update(['setting' => $value]);
+
+        }
+
+        // TODO: set response headers to trigger success/failure on ajax handlers
+        return "true";
     }
 
 }

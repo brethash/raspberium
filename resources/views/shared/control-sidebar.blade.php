@@ -58,8 +58,10 @@
                 </div>
                 <!-- /.form-group -->
 
+                {{ csrf_field() }}
+
                 <p id="saving">
-                    <img src="/img/gears.gif" width="30" style="margin-right: 10px"/>Saving...
+                    <img src="/img/gears.gif" width="30" style="margin-right: 10px"/><span>Saving...</span>
                 </p>
             </form>
         </div>
