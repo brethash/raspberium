@@ -1,7 +1,7 @@
 <ul class="nav navbar-nav">
     <!-- Messages: style can be found in dropdown.less-->
     @if (Route::has('login'))
-        @if(!Auth::user())
+        @if(Auth::guest())
         <li>
             <a href="{{ url('/login') }}">Login</a>
 
