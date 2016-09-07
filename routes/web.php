@@ -12,15 +12,16 @@
 */
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Raspberium\Models\Configuration;
 
 Route::get('/', function () {
-    return view('home', Configuration::getData());
-});
+    return view('home');
+})->middleware('auth');
 
 Route::get('actions', function() {
-    return view('actions', Configuration::getData());
-});
+    return view('actions');
+})->middleware('auth');
 
 Route::get('sensors/temperature', 'SensorController@getTemperature');
 Route::get('sensors/humidity', 'SensorController@getHumidity');
@@ -29,3 +30,5 @@ Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumid
 Route::get('configuration/update', function(Request $request) {
     return Configuration::saveConfiguration($request->all());
 });
+
+Auth::routes();

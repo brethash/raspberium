@@ -7,7 +7,7 @@
                 Dashboard - Home
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                 <li class="active">Home</li>
             </ol>
         </section>
@@ -29,8 +29,6 @@
                 <div class="box-body">
                     <div id="humidityGauge"></div>
                     <div id="temperatureGauge"></div>
-                    <button id="checkTemperatureHumidity">Check data</button>
-
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
