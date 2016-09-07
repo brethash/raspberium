@@ -30,6 +30,6 @@
             <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
             <li><a href="https://github.com/brethash/raspberium" target="_blank"><i class="fa fa-github"></i> <span>Raspberium Source</span></a></li>
         </ul>
-            @endif
+        @endif
     </section>
     <!-- /.sidebar -->
