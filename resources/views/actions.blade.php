@@ -7,7 +7,7 @@
                 Dashboard - Actions
             </h1>
             <ol class="breadcrumb">
-                <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                 <li class="active">Actions</li>
             </ol>
         </section>

@@ -23,8 +23,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/"><i class="fa fa-circle-o"></i>Home</a></li>
-                    <li><a href="/actions"><i class="fa fa-circle-o"></i>Actions</a></li>
+                    <li><a href="{{ url('/') }}"><i class="fa fa-circle-o"></i>Home</a></li>
+                    <li><a href="{{ url('/actions') }}"><i class="fa fa-circle-o"></i>Actions</a></li>
                 </ul>
             </li>
             <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
