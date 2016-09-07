@@ -2,10 +2,14 @@
     
 namespace Raspberium\Contracts;
 
+use Raspberium\Models\Configuration;
+
 class Gpio
 {
     // Integer pin corresponding to the GPIO pin we're trying to talk to
     protected $pinId;
+    // Configuration data
+    protected $configurations;
 
     /**
      * Gpio constructor.
@@ -15,6 +19,7 @@ class Gpio
     {
         // TODO: require this to be an int within the available GPIO range
         $this->pinId = $pinId;
+        $this->configurations =  Configuration::getData();
     }
 
     /**
@@ -72,5 +77,13 @@ class Gpio
     public function setPinId($pinId)
     {
         $this->pinId = $pinId;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConfigurations()
+    {
+        return $this->configurations;
     }
 }

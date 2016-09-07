@@ -99,7 +99,8 @@ class DHT22 extends Gpio
      * @return integer
      */
     public static function getDht22Pin() {
-        return env('DHT22_PIN', false);
+        $configuration = DHT22::getConfigurations();
+        return $configuration['dht22Pin'];
     }
 
 }

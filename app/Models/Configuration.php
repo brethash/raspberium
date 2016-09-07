@@ -20,7 +20,12 @@ class Configuration extends Model
             'light1On' => $configurations->where('name','light1On')->first()['setting'],
             'light1Off' => $configurations->where('name','light1Off')->first()['setting'],
             'light2On' => $configurations->where('name','light2On')->first()['setting'],
-            'light2Off' => $configurations->where('name','light2Off')->first()['setting']
+            'light2Off' => $configurations->where('name','light2Off')->first()['setting'],
+            'light1Pin' => $configurations->where('name','light1Pin')->first()['setting'],
+            'light2Pin' => $configurations->where('name','light2Pin')->first()['setting'],
+            'fanPin' => $configurations->where('name','fanPin')->first()['setting'],
+            'mistingSystemPin' => $configurations->where('name','mistingSystemPin')->first()['setting'],
+            'dht22Pin' => $configurations->where('name','dht22Pin')->first()['setting'],
         ];
 
 
