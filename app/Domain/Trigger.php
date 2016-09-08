@@ -4,6 +4,12 @@ namespace Raspberium\Domain;
 
 // TOOD: attach data logger to check functions to record historical data
 use Raspberium\Models\Configuration;
+use Raspberium\Models\HistoricalData;
+use Raspberium\Models\HistoricalDataDaily;
+use Raspberium\Models\HistoricalDataMonthly;
+use Raspberium\Models\HistoricalDataToday;
+use Raspberium\Models\HistoricalDataWeekly;
+use Raspberium\Models\HistoricalDataYearly;
 
 class Trigger {
 
@@ -88,6 +94,87 @@ class Trigger {
         $light1->off();
         $light2->off();
         return true;
+    }
+
+    public static function recordData()
+    {
+        $dht22 = new DHT22(DHT22::getDht22Pin());
+        $dht22Data = $dht22->getTemperatureHumidityObject();
+        HistoricalDataToday::add(
+          [
+              'temperature' => $dht22Data->temperature,
+              'humidity' => $dht22Data->humidity,
+              'recorded_at' => date('YYmmdd',strtotime('now'))
+          ]
+        );
+    }
+
+    public static function averageTodayData()
+    {
+        $todayData = HistoricalDataToday::all();
+        /** @var HistoricalDataToday $todayData */
+        $averages = $todayData->getAverages();
+        
+        // Add our new average to our weekly 
+        $newDailyData = new HistoricalDataDaily;
+        $newDailyData->temperature = $averages->temperature;
+        $newDailyData->humidity = $averages->humidity;
+        $newDailyData->recorded_at = date('YYmmdd',strtotime('now'));
+        $newDailyData->save();
+
+        // Truncate the data from today's record.
+        $todayData->truncate();
+    }
+
+    public static function averageWeeklyData()
+    {
+        $dailyData = HistoricalDataDaily::all();
+        /** @var HistoricalDataDaily $dailyData */
+        $averages = $dailyData->getAverages();
+
+        // Add our new average to our weekly
+        $newWeeklyData = new HistoricalDataWeekly;
+        $newWeeklyData->temperature = $averages->temperature;
+        $newWeeklyData->humidity = $averages->humidity;
+        $newWeeklyData->recorded_at = date('YYmmdd',strtotime('now'));
+        $newWeeklyData->save();
+
+        // Truncate the data from the daily record
+        $dailyData->truncate();
+    }
+
+    public static function averageMonthlyData()
+    {
+        $weeklyData = HistoricalDataWeekly::all();
+        /** @var HistoricalDataWeekly $weeklyData */
+        $averages = $weeklyData->getAverages();
+
+        // Add our new average to our weekly
+        $newMonthlyData = new HistoricalDataMonthly;
+        $newMonthlyData->temperature = $averages->temperature;
+        $newMonthlyData->humidity = $averages->humidity;
+        $newMonthlyData->recorded_at = date('YYmmdd',strtotime('now'));
+        $newMonthlyData->save();
+
+        // Truncate the data from the weekly record
+        $weeklyData->truncate();
+    }
+
+    public static function averageYearlyData()
+    {
+        $monthlyData = HistoricalDataMonthly::all();
+        /** @var HistoricalDataMonthly $monthlyData */
+        $averages = $monthlyData->getAverages();
+
+        // Add our new average to our weekly
+        $newYearlyData = new HistoricalDataYearly;
+        $newYearlyData->temperature = $averages->temperature;
+        $newYearlyData->humidity = $averages->humidity;
+        $newYearlyData->recorded_at = date('YYmmdd',strtotime('now'));
+        $newYearlyData->save();
+
+        // Truncate the data from the monthly record
+        $monthlyData->truncate();
     }
 
     /**

@@ -45,6 +45,31 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             Trigger::lightsOff();
         })->dailyAt('21:00')->timezone('America/Denver');
+
+        // Record temperature and humidity data every 5 minutes
+        $schedule->call(function(){
+            Trigger::recordData();
+        })->daily()->everyFiveMinutes();
+
+        // Average the daily temperature and humidity data every night at midnight
+        $schedule->call(function(){
+            Trigger::averageTodayData();
+        })->dailyAt('0:0');
+
+        // Average the weekly temperature and humidity data every Sunday at 12:10am
+        $schedule->call(function(){
+            Trigger::averageWeeklyData();
+        })->weeklyOn(0,'0:10');
+
+        // Average the monthly temperature and humidity data every month on the 1st at 12:15am
+        $schedule->call(function(){
+            Trigger::averageMonthlyData();
+        })->monthlyOn(1,'0:15');
+
+        // Average the yearly temperature and humidity data once per year (on a mystery date I guess?)
+        $schedule->call(function(){
+            Trigger::averageYearlyData();
+        })->yearly();
     }
 
     /**

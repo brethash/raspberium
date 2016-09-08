@@ -31,4 +31,5 @@ Route::get('configuration/update', function(Request $request) {
     return Configuration::saveConfiguration($request->all());
 });
 
+
 Auth::routes();
