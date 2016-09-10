@@ -54,7 +54,7 @@ class Kernel extends ConsoleKernel
         // Average the daily temperature and humidity data every night at midnight
         $schedule->call(function(){
             Trigger::averageTodayData();
-        })->dailyAt('0:0');
+        })->dailyAt('0:0')->timezone('America/Denver');
 
         // Average the weekly temperature and humidity data every Sunday at 12:10am
         $schedule->call(function(){

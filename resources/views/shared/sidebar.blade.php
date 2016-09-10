@@ -25,9 +25,10 @@
                 <ul class="treeview-menu">
                     <li><a href="{{ url('/') }}"><i class="fa fa-circle-o"></i>Home</a></li>
                     <li><a href="{{ url('/actions') }}"><i class="fa fa-circle-o"></i>Actions</a></li>
+                    <li><a href="{{ url('/historical') }}"><i class="fa fa-circle-o"></i>Historical</a></li>
                 </ul>
             </li>
-            <li><a href="../../documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+            <li><a href="https://github.com/brethash/raspberium/wiki" target="_blank"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
             <li><a href="https://github.com/brethash/raspberium" target="_blank"><i class="fa fa-github"></i> <span>Raspberium Source</span></a></li>
         </ul>
         @endif
