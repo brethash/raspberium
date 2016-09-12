@@ -4,7 +4,7 @@ namespace Raspberium\Contracts;
 
 use Raspberium\Models\Configuration;
 
-class Gpio
+class Gpio implements Pin
 {
     // Integer pin corresponding to the GPIO pin we're trying to talk to
     protected $pinId;
@@ -15,7 +15,7 @@ class Gpio
      * Gpio constructor.
      * @param $pinId
      */
-    public function __construct($pinId)
+    public function __construct(Integer $pinId)
     {
         // TODO: require this to be an int within the available GPIO range
         $this->pinId = $pinId;
@@ -23,11 +23,11 @@ class Gpio
     }
 
     /**
-     * @param $pinId
-     * @param $status
+     * @param int $pinId
+     * @param string $status
      * @return bool
      */
-    public function writeGPIO($pinId, $status)
+    public function writeGPIO(int $pinId, string $status)
     {
         // Set the pin as an input
         system("gpio mode " . $pinId . " in");
@@ -44,10 +44,10 @@ class Gpio
     }
 
     /**
-     * @param $pinId
+     * @param int $pinId
      * @return bool
      */
-    public function readGPIO($pinId)
+    public function readGPIO(int $pinId)
     {
         // Set the pin as an output
         system("gpio mode " . $pinId . " out");
@@ -74,7 +74,7 @@ class Gpio
     /**
      * @param int $pinId
      */
-    public function setPinId($pinId)
+    public function setPinId(int $pinId)
     {
         $this->pinId = $pinId;
     }
