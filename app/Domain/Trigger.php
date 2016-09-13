@@ -2,9 +2,7 @@
 
 namespace Raspberium\Domain;
 
-// TOOD: attach data logger to check functions to record historical data
 use Raspberium\Models\Configuration;
-use Raspberium\Models\HistoricalData;
 use Raspberium\Models\HistoricalDataDaily;
 use Raspberium\Models\HistoricalDataMonthly;
 use Raspberium\Models\HistoricalDataToday;
@@ -17,18 +15,16 @@ class Trigger {
 
     public function __construct()
     {
-        // TODO: require this to be an int within the available GPIO range
         $this->configurations =  Configuration::getData();
     }
 
-
-    public static function checkHumidity()
+    public function checkHumidity()
     {
-        $dht22 = new DHT22(DHT22::getDht22Pin());
-        $mistingSystem = new Relay(Relay::getMistingSystemPin());
+        /** @var DHT22 $dht22 */
+        $dht22 = new DHT22;
+        $mistingSystem = new Relay($this->configurations['mistingSystemPin']);
         $humidity = $dht22->getHumidity();
-        $configurations = Trigger::getConfigurations();
-        $threshold = $configurations['humidityThreshold'];
+        $threshold = $this->configurations['humidityThreshold'];
 
         // If the humidity is lower than the threshold, turn the misting system on
         if ($humidity < $threshold)
@@ -50,13 +46,13 @@ class Trigger {
         return true;
     }
 
-    public static function checkTemperature()
+    public function checkTemperature()
     {
-        $dht22 = new DHT22(DHT22::getDht22Pin());
-        $fan = new Relay(Relay::getFanPin());
+        /** @var DHT22 $dht22 */
+        $dht22 = new DHT22;
+        $fan = new Relay($this->configurations['fanPin']);
         $temperature = $dht22->getTemperature();
-        $configurations = Trigger::getConfigurations();
-        $threshold = $configurations['temperatureThreshold'];
+        $threshold = $this->configurations['temperatureThreshold'];
 
         if ($temperature > 85)
         {
@@ -76,20 +72,20 @@ class Trigger {
         return true;
     }
 
-    public static function lightsOn()
+    public function lightsOn()
     {
-        $light1 = new Relay(Relay::getLight1Pin());
-        $light2 = new Relay(Relay::getLight2Pin());
+        $light1 = new Relay($this->configurations['light1Pin']);
+        $light2 = new Relay($this->configurations['light2Pin']);
 
         $light1->on();
         $light2->on();
         return true;
     }
 
-    public static function lightsOff()
+    public function lightsOff()
     {
-        $light1 = new Relay(Relay::getLight1Pin());
-        $light2 = new Relay(Relay::getLight2Pin());
+        $light1 = new Relay($this->configurations['light1Pin']);
+        $light2 = new Relay($this->configurations['light2Pin']);
 
         $light1->off();
         $light2->off();
@@ -98,7 +94,8 @@ class Trigger {
 
     public static function recordData()
     {
-        $dht22 = new DHT22(DHT22::getDht22Pin());
+        /** @var DHT22 $dht22 */
+        $dht22 = new DHT22;
         $dht22Data = $dht22->getTemperatureHumidityObject();
         HistoricalDataToday::add(
           [

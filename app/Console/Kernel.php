@@ -25,50 +25,58 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        
         // Check the humidity every minute
         $schedule->call(function() {
-            Trigger::checkHumidity();
+            $trigger = new Trigger;
+            $trigger->checkHumidity();
         })->everyMinute();
 
         // Check the temperature every minute
         $schedule->call(function() {
-            Trigger::checkTemperature();
+            $trigger = new Trigger;
+            $trigger->checkTemperature();
         })->everyMinute();
 
         // Turn the lights on at 8am MST
         $schedule->call(function() {
-            Trigger::lightsOn();
+            $trigger = new Trigger;
+            $trigger->lightsOn();
         })->dailyAt('8:00')->timezone('America/Denver');
 
         // Turn the lights off at 9pm MST
         $schedule->call(function() {
-            Trigger::lightsOff();
+            $trigger = new Trigger;
+            $trigger->lightsOff();
         })->dailyAt('21:00')->timezone('America/Denver');
 
         // Record temperature and humidity data every 5 minutes
         $schedule->call(function(){
-            Trigger::recordData();
+            $trigger = new Trigger;
+            $trigger->recordData();
         })->daily()->everyFiveMinutes();
 
         // Average the daily temperature and humidity data every night at midnight
         $schedule->call(function(){
-            Trigger::averageTodayData();
+            $trigger = new Trigger;
+            $trigger->averageTodayData();
         })->dailyAt('0:0')->timezone('America/Denver');
 
         // Average the weekly temperature and humidity data every Sunday at 12:10am
         $schedule->call(function(){
-            Trigger::averageWeeklyData();
+            $trigger = new Trigger;
+            $trigger->averageWeeklyData();
         })->weeklyOn(0,'0:10');
 
         // Average the monthly temperature and humidity data every month on the 1st at 12:15am
         $schedule->call(function(){
-            Trigger::averageMonthlyData();
+            $trigger = new Trigger;
+            $trigger->averageMonthlyData();
         })->monthlyOn(1,'0:15');
 
         // Average the yearly temperature and humidity data once per year (on a mystery date I guess?)
         $schedule->call(function(){
-            Trigger::averageYearlyData();
+            $trigger = new Trigger;
+            $trigger->averageYearlyData();
         })->yearly();
     }
 

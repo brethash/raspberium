@@ -2,8 +2,6 @@
 
 namespace Raspberium\Domain;
 
-use Raspberium\Contracts\Gpio;
-
 class Sensor extends Gpio
 {
     /**

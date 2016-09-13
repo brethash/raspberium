@@ -9,25 +9,25 @@ class LightController extends Controller
 
     public function light1On()
     {
-        $light = new Relay(Relay::getLight1Pin());
+        $light = new Relay($this->configuration['light1Pin']);
         echo $light->on();
     }
 
     public function light1Off()
     {
-        $light = new Relay(Relay::getLight1Pin());
+        $light = new Relay($this->configuration['light1Pin']);
         echo $light->off();
     }
 
     public function light2On()
     {
-        $light = new Relay(Relay::getLight2Pin());
+        $light = new Relay($this->configuration['light2Pin']);
         echo $light->on();
     }
 
     public function light2Off()
     {
-        $light = new Relay(Relay::getLight2Pin());
+        $light = new Relay($this->configuration['light2Pin']);
         echo $light->off();
     }
 }

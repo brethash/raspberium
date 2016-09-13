@@ -27,8 +27,7 @@ class Configuration extends Model
             'mistingSystemPin' => $configurations->where('name','mistingSystemPin')->first()['setting'],
             'dht22Pin' => $configurations->where('name','dht22Pin')->first()['setting'],
         ];
-
-
+        
     }
 
     public static function saveConfiguration($request)

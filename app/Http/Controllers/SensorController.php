@@ -14,25 +14,25 @@ class SensorController extends Controller
 
     public function getTemperature()
     {
-        $dht22 = new DHT22(DHT22::getDht22Pin());
+        $dht22 = new DHT22;
         echo $dht22->getTemperature();
     }
 
     public function getHumidity()
     {
-        $dht22 = new DHT22(DHT22::getDht22Pin());
+        $dht22 = new DHT22;
         echo $dht22->getHumidity();
     }
     
     public function getTemperatureHumidityObject()
     {
-        $dht22 = new DHT22(DHT22::getDht22Pin());
+        $dht22 = new DHT22;
         echo $dht22->getTemperatureHumidityObject();
     }
 
     public function readDht22()
     {
-        $dht22 = new DHT22(DHT22::getDht22Pin());
+        $dht22 = new DHT22;
         echo "<pre>";
         var_dump($dht22->read());
         echo "</pre>";

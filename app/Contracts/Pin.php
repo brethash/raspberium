@@ -10,11 +10,11 @@ interface Pin
      * @param string $status
      * @return string
      */
-    public function writeGPIO(int $pinId, string $status);
+    public function writeGPIO($pinId, $status);
 
     /**
      * @param int $pinId
      * @return string
      */
-    public function readGPIO(int $pinId);
+    public function readGPIO($pinId);
 }

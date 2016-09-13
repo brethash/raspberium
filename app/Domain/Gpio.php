@@ -1,7 +1,8 @@
 <?php
     
-namespace Raspberium\Contracts;
+namespace Raspberium\Domain;
 
+use Raspberium\Contracts\Pin;
 use Raspberium\Models\Configuration;
 
 class Gpio implements Pin
@@ -15,7 +16,7 @@ class Gpio implements Pin
      * Gpio constructor.
      * @param $pinId
      */
-    public function __construct(Integer $pinId)
+    public function __construct($pinId)
     {
         // TODO: require this to be an int within the available GPIO range
         $this->pinId = $pinId;
@@ -27,7 +28,7 @@ class Gpio implements Pin
      * @param string $status
      * @return bool
      */
-    public function writeGPIO(int $pinId, string $status)
+    public function writeGPIO($pinId, $status)
     {
         // Set the pin as an input
         system("gpio mode " . $pinId . " in");
@@ -47,7 +48,7 @@ class Gpio implements Pin
      * @param int $pinId
      * @return bool
      */
-    public function readGPIO(int $pinId)
+    public function readGPIO($pinId)
     {
         // Set the pin as an output
         system("gpio mode " . $pinId . " out");
