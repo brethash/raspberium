@@ -3,11 +3,20 @@
 namespace Raspberium\Domain;
 
 use Illuminate\Support\Facades\Cache;
-use Raspberium\Contracts\Gpio;
 
 class DHT22 extends Gpio
 {
 
+    /**
+     * DHT22 constructor.
+     *
+     * Simply sets the DHT22 pin. Noice.
+     */
+    public function __construct()
+    {
+        parent::__construct($this->getDht22Pin());
+    }
+    
     /**
      * Reads the output from the loldht script
      *
@@ -98,8 +107,9 @@ class DHT22 extends Gpio
      *
      * @return integer
      */
-    public static function getDht22Pin() {
-        return env('DHT22_PIN', false);
+    public function getDht22Pin() {
+        $configuration = $this->getConfigurations();
+        return $configuration['dht22Pin'];
     }
 
 }

@@ -58,6 +58,46 @@
                 </div>
                 <!-- /.form-group -->
 
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Light 1 GPIO Pin:
+                        <input type="text" name="light1Pin" value="{{ $light1Pin }}" />
+                    </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Light 2 GPIO Pin:
+                        <input type="text" name="light2Pin" value="{{ $light2Pin }}" />
+                    </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Fan GPIO Pin:
+                        <input type="text" name="fanPin" value="{{ $fanPin }}" />
+                    </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Misting System GPIO Pin:
+                        <input type="text" name="mistingSystemPin" value="{{ $mistingSystemPin }}" />
+                    </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        DHT22 GPIO Pin:
+                        <input type="text" name="dht22Pin" value="{{ $dht22Pin }}" />
+                    </label>
+                </div>
+                <!-- /.form-group -->
+
                 {{ csrf_field() }}
 
                 <p id="saving">

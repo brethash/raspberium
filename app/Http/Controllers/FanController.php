@@ -9,13 +9,13 @@ class FanController extends Controller
 
     public function fansOn()
     {
-        $fan = new Relay(Relay::getFanPin());
+        $fan = new Relay($this->configuration['fanPin']);
         echo $fan->on();
     }
 
     public function fansOff()
     {
-        $fan = new Relay(Relay::getFanPin());
+        $fan = new Relay($this->configuration['fanPin']);
         echo $fan->off();
     }
 

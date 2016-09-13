@@ -14,8 +14,8 @@ class ConfigurationsTableSeeder extends Seeder
     {
         $configurations = array(
             [
-            'name' => 'temperatureThreshold',
-            'setting' => '28'
+                'name' => 'temperatureThreshold',
+                'setting' => '28'
             ],
             [
                 'name' => 'humidityThreshold',
@@ -36,7 +36,27 @@ class ConfigurationsTableSeeder extends Seeder
             [
                 'name' => 'light2Off',
                 'setting' => '19:01'
-            ]
+            ],
+            [
+                'name' => 'light1Pin',
+                'setting' => '3'
+            ],
+            [
+                'name' => 'light2Pin',
+                'setting' => '4'
+            ],
+            [
+                'name' => 'fanPin',
+                'setting' => '5'
+            ],
+            [
+                'name' => 'mistingSystemPin',
+                'setting' => '6'
+            ],
+            [
+                'name' => 'dht22Pin',
+                'setting' => '7'
+            ],
         );
 
         foreach ($configurations as $config)

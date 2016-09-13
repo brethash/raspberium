@@ -26,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
 //        var_dump(User::all('name')->first()->toArray());
 
         // Share configuration data to view
-        View::share(Configuration::getData());
+        $configuration = new Configuration;
+        View::share($configuration->getData());
     }
 
     /**
