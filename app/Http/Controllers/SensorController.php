@@ -30,7 +30,7 @@ class SensorController extends Controller
         echo $dht22->getTemperatureHumidityObject();
     }
 
-    public function readDht22()
+    public function debugDht22()
     {
         $dht22 = new DHT22;
         echo "<pre>";
