@@ -11,6 +11,11 @@ class HistoricalData extends Model
         self::query()->delete();
     }
 
+    /**
+     * Returns an object of temperature and humidity averages.
+     *
+     * @return \stdClass
+     */
     public function getAverages()
     {
         $output = new \stdClass();
@@ -19,6 +24,11 @@ class HistoricalData extends Model
         return $output;
     }
 
+    /**
+     * Converts data from query to a javascript array for Google Charts. giggity.
+     *
+     * @return string
+     */
     public function toGoogleChart()
     {
         $data = self::all();

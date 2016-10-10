@@ -9,6 +9,11 @@ class Configuration extends Model
     protected $table = 'configurations';
     public $timestamps = false;
 
+    /**
+     * Returns array of configuration values for the front end to display.
+     *
+     * @return array
+     */
     public static function getData()
     {
 
@@ -30,6 +35,12 @@ class Configuration extends Model
         
     }
 
+    /**
+     * Save a configuration value via ajax to the database.
+     *
+     * @param array $request
+     * @return string
+     */
     public static function saveConfiguration($request)
     {
         foreach($request as $key => $value)
