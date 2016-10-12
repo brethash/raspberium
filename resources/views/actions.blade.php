@@ -27,20 +27,37 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div>
+                    <div class="button-box col-md-4">
                         <h3>Lighting System Control</h3>
                         <ul>
-                            <li><button id="light1On">Turn Light 1 On</button></li>
-                            <li><button id="light1Off">Turn Light 1 Off</button></li>
-                            <li><button id="light2On">Turn Light 2 On</button></li>
-                            <li><button id="light2Off">Turn Light 2 Off</button></li>
+                            <li class="btn-group">
+                                <button class="btn btn-default" id="light1On" data-device="light1" data-state="on">Turn Light 1 On</button>
+                                <button class="btn btn-default" id="light1Off" data-device="light1" data-state="off">Turn Light 1 Off</button>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="btn-group">
+                                <button class="btn btn-default" id="light2On" data-device="light2" data-state="on">Turn Light 2 On</button>
+                                <button class="btn btn-default" id="light2Off" data-device="light2" data-state="off">Turn Light 2 Off</button>
+                            </li>
                         </ul>
                     </div>
-                    <div>
+                    <div class="button-box col-md-4">
                         <h3>Misting System Control</h3>
                         <ul>
-                            <li><button id="pumpOn">Turn Pump On</button></li>
-                            <li><button id="pumpOff">Turn Pump Off</button></li>
+                            <li class="btn-group">
+                                <button class="btn btn-default" id="pumpOn" data-device="mistingSystem" data-state="on">Turn Pump On</button>
+                                <button class="btn btn-default" id="pumpOff" data-device="mistingSystem" data-state="off">Turn Pump Off</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="button-box col-md-4">
+                        <h3>Fan System Control</h3>
+                        <ul>
+                            <li class="btn-group">
+                                <button class="btn btn-default" id="fanOn" data-device="fan" data-state="on">Turn Fan On</button>
+                                <button class="btn btn-default" id="fanOff" data-device="fan" data-state="off">Turn Fan Off</button>
+                            </li>
                         </ul>
                     </div>
 
@@ -55,4 +72,7 @@
 
         </section>
         <!-- /.content -->
+    @stop
+    @section('scripts')
+        <script src="/js/actions.js"></script>
     @stop
