@@ -15,8 +15,6 @@ Features:
  
  * For information on how to build the relay box, check out [this tutorial](http://www.instructables.com/id/Web-Controlled-8-Channel-Powerstrip/?ALLSTEPS). We're currently using 4 for this project, but build as many as you want!
  
- http://www.instructables.com/id/Web-Controlled-8-Channel-Powerstrip/?ALLSTEPS
-
  * For wiring help, check out this Raspberry Pi 3 GPIO Header diagram:
 ![Raspberry Pi 3 GPIO Header diagram](https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-10-339300/pi3_gpio.png "Raspberry Pi 3 GPIO Header diagram")
 [Source](https://www.element14.com/community/servlet/JiveServlet/previewBody/73950-102-10-339300/pi3_gpio.png)
