@@ -22,7 +22,7 @@ class Trigger {
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $mistingSystem = new Relay($this->configurations['mistingSystemPin']);
+        $mistingSystem = new Relay($this->configurations['mistingSystem1Pin']);
         $humidity = $dht22->getHumidity();
         $threshold = $this->configurations['humidityThreshold'];
 
@@ -46,7 +46,7 @@ class Trigger {
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $fan = new Relay($this->configurations['fanPin']);
+        $fan = new Relay($this->configurations['fan1Pin']);
         $temperature = $dht22->getTemperature();
         $threshold = $this->configurations['temperatureThreshold'];
 
