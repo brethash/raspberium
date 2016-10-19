@@ -76,16 +76,16 @@
 
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
-                        Fan GPIO Pin:
-                        <input type="text" name="fanPin" value="{{ $fanPin }}" />
+                        Fan 1 GPIO Pin:
+                        <input type="text" name="fan1Pin" value="{{ $fan1Pin }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
 
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
-                        Misting System GPIO Pin:
-                        <input type="text" name="mistingSystemPin" value="{{ $mistingSystemPin }}" />
+                        Misting System 1 GPIO Pin:
+                        <input type="text" name="mistingSystem1Pin" value="{{ $mistingSystem1Pin }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->

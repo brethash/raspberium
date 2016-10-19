@@ -46,11 +46,11 @@ class ConfigurationsTableSeeder extends Seeder
                 'setting' => '4'
             ],
             [
-                'name' => 'fanPin',
+                'name' => 'fan1Pin',
                 'setting' => '5'
             ],
             [
-                'name' => 'mistingSystemPin',
+                'name' => 'mistingSystem1Pin',
                 'setting' => '6'
             ],
             [

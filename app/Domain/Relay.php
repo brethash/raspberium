@@ -33,10 +33,10 @@ class Relay extends Gpio
             return true;
     }
     
-    public static function getMistingSystemPin()
+    public static function getMistingSystem1Pin()
     {
         $configuration = Relay::getConfigurations();
-        return $configuration['mistingSystemPin'];
+        return $configuration['mistingSystem1Pin'];
     }
 
     public static function getLight1Pin()
@@ -51,9 +51,9 @@ class Relay extends Gpio
         return $configuration['light2Pin'];
     }
 
-    public static function getFanPin()
+    public static function getFan1Pin()
     {
         $configuration = Relay::getConfigurations();
-        return $configuration['fanPin'];
+        return $configuration['fan1Pin'];
     }
 }

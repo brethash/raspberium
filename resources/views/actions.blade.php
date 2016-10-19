@@ -39,8 +39,19 @@
                     <div>
                         <h3>Misting System Control</h3>
                         <ul>
-                            <li><button id="pumpOn">Turn Pump On</button></li>
-                            <li><button id="pumpOff">Turn Pump Off</button></li>
+                            <li class="btn-group">
+                                <button class="btn btn-default" id="pump1On" data-device="mistingSystem1" data-state="on">Turn Pump On</button>
+                                <button class="btn btn-default" id="pump1Off" data-device="mistingSystem1" data-state="off">Turn Pump Off</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="button-box col-md-4">
+                        <h3>Fan System Control</h3>
+                        <ul>
+                            <li class="btn-group">
+                                <button class="btn btn-default" id="fan1On" data-device="fan1" data-state="on">Turn Fan On</button>
+                                <button class="btn btn-default" id="fan1Off" data-device="fan1" data-state="off">Turn Fan Off</button>
+                            </li>
                         </ul>
                     </div>
 
