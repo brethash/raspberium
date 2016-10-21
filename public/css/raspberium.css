@@ -3,3 +3,6 @@
 .gauges {width: 600px; margin:0 auto;}
 .home-gauge {width: 50%; float: left;}
 .box-title {margin-top:10px;}
+.alert-box h2 {font-size: 20px; padding: 8px; margin: 0; border-radius: 2px; display: none;}
+.alert-box h2.success {color:#fff; background: #00a65a;}
+.alert-box h2.failure {color:#fff; background: #dd4444;}
