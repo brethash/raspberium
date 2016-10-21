@@ -25,17 +25,30 @@ class Gpio implements Pin
 
     /**
      * @param int $pinId
-     * @param string $status
      * @return bool
      */
-    public function writeGPIO($pinId, $status)
+    public function setHigh($pinId)
     {
-        // Set the pin as an input
-        system("gpio mode " . $pinId . " in");
-
         // Send a status to the pin
         $return = 0;
-        exec("gpio write " . $pinId . " " . $status, $output, $return);
+        exec("gpio export " . $pinId . " out", $output, $return);
+
+        // If the return is not 0, there was an error. And that's a bummer.
+        if ($return > 0)
+            return false;
+
+        return $output;
+    }
+
+    /**
+     * @param int $pinId
+     * @return bool
+     */
+    public function setLow($pinId)
+    {
+        // Send a status to the pin
+        $return = 0;
+        exec("gpio export " . $pinId . " in", $output, $return);
 
         // If the return is not 0, there was an error. And that's a bummer.
         if ($return > 0)
