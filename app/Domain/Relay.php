@@ -12,7 +12,7 @@ class Relay extends Gpio
      * @return bool
      */
     public function on() {
-        $on = $this->writeGPIO($this->getPinId(), 1);
+        $on = $this->setHigh($this->getPinId());
         if (!$on)
             return false;
         else
@@ -25,7 +25,7 @@ class Relay extends Gpio
      * @return bool
      */
     public function off() {
-        $off = $this->writeGPIO($this->getPinId(), 0);
+        $off = $this->setLow($this->getPinId());
 
         if (!$off)
             return false;

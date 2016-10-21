@@ -15,6 +15,6 @@ class Sensor extends Gpio
      * @return bool|array
      */
     public function write() {
-        return $this->writeGPIO($this->getPinId(), 0);
+        return $this->setHigh($this->getPinId(), 0);
     }
 }

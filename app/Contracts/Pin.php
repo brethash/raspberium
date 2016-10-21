@@ -7,10 +7,15 @@ interface Pin
 
     /**
      * @param int $pinId
-     * @param string $status
      * @return string
      */
-    public function writeGPIO($pinId, $status);
+    public function setHigh($pinId);
+
+    /**
+     * @param int $pinId
+     * @return string
+     */
+    public function setLow($pinId);
 
     /**
      * @param int $pinId
