@@ -17,6 +17,9 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-body">
+                    <div class="alert-box">
+                        <h2></h2>
+                    </div>
                     <div class="button-box col-md-4">
                         <h3>Lighting System Control</h3>
                         <ul>
