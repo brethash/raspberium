@@ -27,7 +27,7 @@ class SensorController extends Controller
     public function getTemperatureHumidityObject()
     {
         $dht22 = new DHT22;
-        echo $dht22->getTemperatureHumidityObject();
+        echo $dht22->getTemperatureHumidityJsonObject();
     }
 
     public function debugDht22()

@@ -77,8 +77,29 @@ class DHT22 extends Gpio
             $output = new \stdClass();
             $output->humidity = $this->getHumidity();
             $output->temperature = $this->getTemperature();
-            $dht22 = json_encode($output);
             Cache::put('dht22', $dht22, 0.13);
+        }
+
+        return $dht22;
+
+    }
+
+    /**
+     * Returns a convenient json object with the temperature and humidity, ripe for parsing!
+     *
+     * @return string
+     */
+    public function getTemperatureHumidityJsonObject()
+    {
+        $dht22 = Cache::get('dht22json');
+
+        if ($dht22 == null){
+            // DHT22 reading doesn't exist in the cache
+            $output = new \stdClass();
+            $output->humidity = $this->getHumidity();
+            $output->temperature = $this->getTemperature();
+            $dht22 = json_encode($output);
+            Cache::put('dht22json', $dht22, 0.13);
         }
 
         return $dht22;
