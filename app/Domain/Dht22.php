@@ -36,14 +36,19 @@ class DHT22 extends Gpio
      */
     public function getHumidity()
     {
-        $splitValues = $this->getSplitValues();
-        if ($splitValues)
-        {
-            $humidity = $splitValues[0];
-            $humidityArray = explode('=',$humidity);
-            return trim($humidityArray[1]);
+        $dht22 = Cache::get('dht22');
+
+        if ($dht22 == null) {
+            $splitValues = $this->getSplitValues();
+            if ($splitValues) {
+                $humidity = $splitValues[0];
+                $humidityArray = explode('=', $humidity);
+                return trim($humidityArray[1]);
+            }
+            return false;
         }
-        return false;
+
+        return $dht22->humidity;
     }
 
     /**
@@ -53,20 +58,25 @@ class DHT22 extends Gpio
      */
     public function getTemperature()
     {
-        $splitValues = $this->getSplitValues();
-        if ($splitValues)
-        {
-            $temperature = $splitValues[1];
-            $temperatureArray = explode('=',$temperature);
-            return trim(str_replace('*C','',$temperatureArray[1]));
+        $dht22 = Cache::get('dht22');
+
+        if ($dht22 == null) {
+            $splitValues = $this->getSplitValues();
+            if ($splitValues) {
+                $temperature = $splitValues[1];
+                $temperatureArray = explode('=', $temperature);
+                return trim(str_replace('*C', '', $temperatureArray[1]));
+            }
+            return false;
         }
-        return false;
+
+        return $dht22->temperature;
     }
 
     /**
      * Returns a convenient json object with the temperature and humidity, ripe for parsing!
      *
-     * @return string
+     * @return \stdClass
      */
     public function getTemperatureHumidityObject()
     {
