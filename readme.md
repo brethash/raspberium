@@ -8,7 +8,7 @@ Features:
  * It's free! And **AWESOME**!
  
 ## Prerequisites
- * Requires [loldht](https://github.com/technion/lol_dht22) library for the DHT22 sensor. Make sure the script is installed at /usr/bin/loldht.
+ * Requires [loldht](https://github.com/brethash/lol_dht22) library for the DHT22 sensor. Make sure the script is installed at /usr/bin/loldht.
  * Requires [The GPIO utility](https://projects.drogon.net/raspberry-pi/wiringpi/the-gpio-utility/) library to interact with the GPIO pins on the Raspberry Pi.
  
 ## Notes
