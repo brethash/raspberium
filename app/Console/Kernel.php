@@ -53,7 +53,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function(){
             $trigger = new Trigger;
             $trigger->recordData();
-        })->daily()->everyFiveMinutes();
+        })->everyFiveMinutes();
 
         // Average the daily temperature and humidity data every night at midnight
         $schedule->call(function(){
