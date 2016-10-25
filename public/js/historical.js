@@ -18,8 +18,8 @@ function updateGraph(id,newData,options) {
 
     var data = new google.visualization.DataTable();
     data.addColumn('datetime', 'Time');
-    data.addColumn('number', 'Temperature');
-    data.addColumn('number', 'Humidity');
+    data.addColumn('number', 'Temperature (°C)');
+    data.addColumn('number', 'Humidity (%)');
     data.addRows(newData);
 
     google.load("visualization", "1", {packages:["corechart"]});
