@@ -24,9 +24,18 @@ class DHT22 extends Gpio
      */
     public function read() {
         // usage: loldht <pin> (<tries>)
-        $return_var = 0;
-        exec('sudo /usr/bin/loldht', $output, $return_var);
-        return $output;
+        $dht22 = Cache::get('dht22');
+
+        if ($dht22 == null)
+        {
+            $return_var = 0;
+            exec('sudo /usr/bin/loldht', $output, $return_var);
+            return $output;
+        }
+        else
+        {
+
+        }
     }
 
     /**
@@ -36,20 +45,16 @@ class DHT22 extends Gpio
      */
     public function getHumidity()
     {
-        $dht22 = Cache::get('dht22');
 
-        if ($dht22 == null) {
-            $splitValues = $this->getSplitValues();
-            if ($splitValues) {
-                $humidity = $splitValues[0];
-                $humidityArray = explode('=', $humidity);
-                Cache::put('humidity', $humidityArray[1], 0.13);
-                return trim($humidityArray[1]);
-            }
-            return false;
+        $splitValues = $this->getSplitValues();
+        if ($splitValues)
+        {
+            $humidity = $splitValues[0];
+            $humidityArray = explode('=', $humidity);
+            return trim($humidityArray[1]);
         }
+        return false;
 
-        return $dht22->humidity;
     }
 
     /**
@@ -59,20 +64,16 @@ class DHT22 extends Gpio
      */
     public function getTemperature()
     {
-        $dht22 = Cache::get('dht22');
-
-        if ($dht22 == null) {
-            $splitValues = $this->getSplitValues();
-            if ($splitValues) {
-                $temperature = $splitValues[1];
-                $temperatureArray = explode('=', $temperature);
-                Cache::put('temperature', $temperatureArray[1], 0.13);
-                return trim(str_replace('*C', '', $temperatureArray[1]));
-            }
-            return false;
+        $splitValues = $this->getSplitValues();
+        if ($splitValues)
+        {
+            $temperature = $splitValues[1];
+            $temperatureArray = explode('=', $temperature);
+            Cache::put('temperature', $temperatureArray[1], 0.13);
+            return trim(str_replace('*C', '', $temperatureArray[1]));
         }
+        return false;
 
-        return $dht22->temperature;
     }
 
     /**
@@ -82,17 +83,12 @@ class DHT22 extends Gpio
      */
     public function getTemperatureHumidityObject()
     {
-        $dht22 = Cache::get('dht22');
+        // DHT22 reading doesn't exist in the cache
+        $output = new \stdClass();
+        $output->humidity = $this->getHumidity();
+        $output->temperature = $this->getTemperature();
 
-        if ($dht22 == null){
-            // DHT22 reading doesn't exist in the cache
-            $output = new \stdClass();
-            $output->humidity = $this->getHumidity();
-            $output->temperature = $this->getTemperature();
-            Cache::put('dht22', $dht22, 0.13);
-        }
-
-        return $dht22;
+        return $output;
 
     }
 
@@ -103,36 +99,45 @@ class DHT22 extends Gpio
      */
     public function getTemperatureHumidityJsonObject()
     {
-        $dht22 = Cache::get('dht22json');
+        $dht22json = Cache::get('dht22json');
 
-        if ($dht22 == null){
+        if ($dht22json == null)
+        {
             // DHT22 reading doesn't exist in the cache
             $output = new \stdClass();
             $output->humidity = $this->getHumidity();
             $output->temperature = $this->getTemperature();
-            $dht22 = json_encode($output);
-            Cache::put('dht22json', $dht22, 0.13);
+            $dht22json = json_encode($output);
+            Cache::put('dht22json', $dht22json, 0.13);
         }
 
-        return $dht22;
+        return $dht22json;
 
     }
 
     /**
      * Splits the read value from the loldht script for parsing
      *
-     * @return boolean|array
+     * @return array
      */
     private function getSplitValues()
     {
         // TODO: check if readValue is a valid array
-        $readValue = $this->read();
-        if (!empty($readValue))
-        {
-            $output = array_pop($readValue);
-            return explode('%',$output);
+        $dht22 = Cache::get('dht22');
+
+        if ($dht22 == null) {
+            // If there isn't a currently cached dht22 reading, lets read the sensor and return the exploded output.
+            $readValue = $this->read();
+            if (!empty($readValue)) {
+                $output = array_pop($readValue);
+                $explodeded = explode('%', $output);
+                Cache::put('dht22', $explodeded, 0.13);
+                return $explodeded;
+            }
         }
-        return false;
+
+        // Otherwise, lets return the cached dht22 reading.
+        return $dht22;
     }
 
     /**
