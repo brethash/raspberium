@@ -97,13 +97,11 @@ class Trigger {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
         $dht22Data = $dht22->getTemperatureHumidityObject();
-        HistoricalDataToday::add(
-          [
-              'temperature' => $dht22Data->temperature,
-              'humidity' => $dht22Data->humidity,
-              'recorded_at' => date('YYmmdd',strtotime('now'))
-          ]
-        );
+        $historicalDataToday = new HistoricalDataToday;
+        $historicalDataToday->temperature = $dht22Data->temperature;
+        $historicalDataToday->humidity = $dht22Data->humidity;
+        $historicalDataToday->recorded_at = date('YYmmdd',strtotime('now'));
+        $historicalDataToday->save();
     }
 
     public static function averageTodayData()
