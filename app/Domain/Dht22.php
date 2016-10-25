@@ -43,6 +43,7 @@ class DHT22 extends Gpio
             if ($splitValues) {
                 $humidity = $splitValues[0];
                 $humidityArray = explode('=', $humidity);
+                Cache::put('humidity', $humidityArray[1], 0.13);
                 return trim($humidityArray[1]);
             }
             return false;
@@ -65,6 +66,7 @@ class DHT22 extends Gpio
             if ($splitValues) {
                 $temperature = $splitValues[1];
                 $temperatureArray = explode('=', $temperature);
+                Cache::put('temperature', $temperatureArray[1], 0.13);
                 return trim(str_replace('*C', '', $temperatureArray[1]));
             }
             return false;
