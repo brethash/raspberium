@@ -17,7 +17,7 @@ class CreateHistoricalData extends Migration
             $table->increments('id');
             $table->float('temperature');
             $table->float('humidity');
-            $table->date('recorded_at');
+            $table->dateTime('recorded_at');
         });
 
         Schema::create('historical_data_daily', function (Blueprint $table) {

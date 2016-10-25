@@ -100,7 +100,7 @@ class Trigger {
         $historicalDataToday = new HistoricalDataToday;
         $historicalDataToday->temperature = $dht22Data->temperature;
         $historicalDataToday->humidity = $dht22Data->humidity;
-        $historicalDataToday->recorded_at = date('Ymd',strtotime('now'));
+        $historicalDataToday->recorded_at = date('Y-m-d H:i:s',strtotime('now'));
         $historicalDataToday->save();
     }
 
@@ -114,7 +114,7 @@ class Trigger {
         $newDailyData = new HistoricalDataDaily;
         $newDailyData->temperature = $averages->temperature;
         $newDailyData->humidity = $averages->humidity;
-        $newDailyData->recorded_at = date('Ymd',strtotime('now'));
+        $newDailyData->recorded_at = date('Y-m-d',strtotime('now'));
         $newDailyData->save();
 
         // Truncate the data from today's record.
@@ -131,7 +131,7 @@ class Trigger {
         $newWeeklyData = new HistoricalDataWeekly;
         $newWeeklyData->temperature = $averages->temperature;
         $newWeeklyData->humidity = $averages->humidity;
-        $newWeeklyData->recorded_at = date('Ymd',strtotime('now'));
+        $newWeeklyData->recorded_at = date('Y-m-d',strtotime('now'));
         $newWeeklyData->save();
 
         // Truncate the data from the daily record
@@ -148,7 +148,7 @@ class Trigger {
         $newMonthlyData = new HistoricalDataMonthly;
         $newMonthlyData->temperature = $averages->temperature;
         $newMonthlyData->humidity = $averages->humidity;
-        $newMonthlyData->recorded_at = date('Ymd',strtotime('now'));
+        $newMonthlyData->recorded_at = date('Y-m-d',strtotime('now'));
         $newMonthlyData->save();
 
         // Truncate the data from the weekly record
@@ -165,7 +165,7 @@ class Trigger {
         $newYearlyData = new HistoricalDataYearly;
         $newYearlyData->temperature = $averages->temperature;
         $newYearlyData->humidity = $averages->humidity;
-        $newYearlyData->recorded_at = date('Ymd',strtotime('now'));
+        $newYearlyData->recorded_at = date('Y-m-d',strtotime('now'));
         $newYearlyData->save();
 
         // Truncate the data from the monthly record
