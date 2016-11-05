@@ -4,7 +4,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Dashboard - Actions
+                Actions
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -17,7 +17,6 @@
             <!-- Default box -->
             <div class="box">
                 <div class="box-body">
-                    <h3 class="box-title">Actions</h3>
                     <div class="button-box col-md-4">
                         <h3>Lighting System Control</h3>
                         <ul>

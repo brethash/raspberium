@@ -30,7 +30,7 @@
 
 </head>
 
-<body class="hold-transition skin-green fixed sidebar-mini">
+<body class="hold-transition skin-green fixed sidebar-mini sidebar-collapse">
     <!-- Site wrapper -->
     <div class="wrapper">
 
