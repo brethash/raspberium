@@ -108,9 +108,6 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="pull-left">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
                         <a href="{{ url('/logout') }}"
                            class="btn btn-default btn-flat"
                            onclick="event.preventDefault();
@@ -121,6 +118,11 @@
                             {{ csrf_field() }}
                         </form>
                     </div>
+                    <div class="pull-right">
+                        <a href="#" data-command="restart" class="btn btn-default btn-flat system-command">Restart</a>
+                        <a href="#" data-command="shutdown" class="btn btn-default btn-flat system-command">Shutdown</a>
+                    </div>
+
                 </li>
             </ul>
         </li>

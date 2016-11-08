@@ -26,5 +26,19 @@ $(function(){
             $saveText.hide();
             $saveImage.hide();
         },3000);
-    })
+    });
+
+    // System commands
+    $('.system-command').click(function(e){
+        e.preventDefault();
+        $.get({
+            url: '/system/command/' + $(this).data('command'),
+            success: function(data){
+                alert(data);
+            },
+            failure: function(){
+                alert('System did not respond. Bummer.');
+            }
+        });
+    });
 });

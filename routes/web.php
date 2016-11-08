@@ -14,6 +14,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Raspberium\Domain\Relay;
+use Raspberium\Domain\System;
 use Raspberium\Models\Configuration;
 use Raspberium\Models\HistoricalDataMonthly;
 use Raspberium\Models\HistoricalDataToday;
@@ -70,5 +71,24 @@ Route::get('historical', function(){
 Route::get('configuration/update', function(Request $request) {
     return Configuration::saveConfiguration($request->all());
 });
+
+Route::get('system/command/{command}', function($command) {
+    try {
+        $system = new System;
+        if ($command == 'restart')
+        {
+            $system->restart();
+        }
+        else if ($command == 'shutdown'){
+            $system->shutdown();
+        }
+        else {
+            echo 'This is not a valid command';
+        }
+    }
+    catch (Exception $e) {
+        echo 'Request could not be completed at this time.';
+    }
+})->middleware('auth');
 
 Auth::routes();
