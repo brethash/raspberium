@@ -20,7 +20,7 @@
 
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
-                        Target Humidity (&deg;C):
+                        Target Humidity (%):
                         <input type="text" name="humidityThreshold" value="{{ $humidityThreshold }}" />
                     </label>
                 </div>
