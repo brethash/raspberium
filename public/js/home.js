@@ -1,7 +1,7 @@
 "use strict";
 
 var temperatureOptions = {
-    width: 400, height: 200,
+    width: 300, height: 300,
     yellowFrom: 0, yellowTo: 20,
     greenFrom: 20, greenTo: 30,
     redFrom: 30, redTo: 50,
@@ -11,7 +11,7 @@ var temperatureOptions = {
 };
 
 var humidityOptions = {
-    width: 400, height: 200,
+    width: 300, height: 300,
     redFrom: 10, redTo: 30,
     yellowFrom: 30, yellowTo: 55,
     greenFrom: 55, greenTo: 100,

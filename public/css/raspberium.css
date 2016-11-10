@@ -1,2 +1,5 @@
 .button-box h3 {text-align: center;}
 .button-box ul {list-style: none; padding: 0; text-align: center;}
+.gauges {width: 600px; margin:0 auto;}
+.home-gauge {width: 50%; float: left;}
+.box-title {margin-top:10px;}
