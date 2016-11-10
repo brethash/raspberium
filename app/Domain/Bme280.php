@@ -4,13 +4,13 @@ namespace Raspberium\Domain;
 
 use Illuminate\Support\Facades\Cache;
 
-class DHT22 extends Gpio
+class Bme280 extends Gpio
 {
 
     /**
-     * DHT22 constructor.
+     * BME280 constructor.
      *
-     * Simply sets the DHT22 pin. Noice.
+     * Simply sets the BME280 pin. Saweeeeet.
      */
     public function __construct()
     {
@@ -69,7 +69,7 @@ class DHT22 extends Gpio
         {
             $temperature = $splitValues[1];
             $temperatureArray = explode('=', $temperature);
-            Cache::put('temperature', $temperatureArray[1], 0.167);
+            Cache::put('temperature', $temperatureArray[1], 0.13);
             return trim(str_replace('*C', '', $temperatureArray[1]));
         }
         return false;
