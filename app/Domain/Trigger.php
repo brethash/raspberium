@@ -34,13 +34,9 @@ class Trigger {
         }
         else
         {
-            // Don't turn the pump off until it hits that sweet sweet hysteresis
-            if ($humidity == $threshold){
-                // Turn the system off. We've reached terminal humidity!
-                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-                $off = $mistingSystem->off();
-            }
-
+            // Turn the system off. We've reached terminal humidity!
+            // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+            $off = $mistingSystem->off();
         }
 
         return true;
@@ -60,13 +56,9 @@ class Trigger {
         }
         else
         {
-            // Don't turn the pump off until it hits that sweet sweet hysteresis
-            if ($temperature == $threshold){
-                // Turn the system off. We've reached terminal humidity!
-                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-                $off = $fan->off();
-            }
-
+            // Turn the system off. We've reached terminal humidity!
+            // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+            $off = $fan->off();
         }
 
         return true;
