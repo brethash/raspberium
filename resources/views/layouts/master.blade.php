@@ -18,6 +18,12 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
 
+    @if (isset($kiosk))
+    <!-- Kiosk Keyboard -->
+    <link rel="stylesheet" href="/css/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="/css/keyboard/keyboard.min.css">
+    @endif
+
     <!-- Custom Raspberium styles -->
     <link rel="stylesheet" href="/css/raspberium.css">
 
@@ -104,6 +110,16 @@
     <!-- Site common scripts -->
     <script src="/js/demo.js"></script>
     <script src="/js/scripts.js"></script>
+    @if (isset($kiosk))
+    <script src="/js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/js/keyboard/jquery.keyboard.min.js"></script>
+    <script>
+        $(function(){
+            $('input,textarea').addClass('keyboard');
+            $('.keyboard').keyboard();
+        });
+    </script>
+    @endif
     @yield('scripts')
 
 </body>
