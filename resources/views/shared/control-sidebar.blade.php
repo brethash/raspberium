@@ -9,7 +9,14 @@
         <h4 class="control-sidebar-heading">Options</h4>
         <div class="form-group">
             <label class="control-sidebar-subheading">
-                <input type="checkbox" class="pull-right" id="kioskMode" />
+                <input
+                        type="checkbox"
+                        class="pull-right"
+                        id="kioskMode"
+                @if (isset($kiosk) && $kiosk == "enabled")
+                        checked="checked"
+                @endif
+                />
                 Toggle kiosk mode
             </label>
         </div>
