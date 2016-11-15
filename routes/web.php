@@ -13,6 +13,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Raspberium\Domain\Relay;
 use Raspberium\Models\Configuration;
 use Raspberium\Models\HistoricalDataMonthly;
@@ -41,9 +42,13 @@ Route::get('relay/{device}/{state}', function($device,$state){
         $relay = new Relay($configurations[$device . 'Pin']);
 
         if ($state == "on")
+        {
             $relay->on();
+        }
         else
+        {
             $relay->off();
+        }
 
         echo 'Success';
     }
@@ -71,7 +76,12 @@ Route::get('configuration/update', function(Request $request) {
     return Configuration::saveConfiguration($request->all());
 });
 
-Route::get('kiosk/{state}', function($state, Request $request) {
+Route::get('kiosk/{state}', function($state) {
+    if ($state != null)
+    {
+        Session::put('kiosk',$state);
+    }
+
     return "true";
 });
 
