@@ -71,4 +71,8 @@ Route::get('configuration/update', function(Request $request) {
     return Configuration::saveConfiguration($request->all());
 });
 
+Route::get('kiosk/{state}', function($state, Request $request) {
+    return "true";
+});
+
 Auth::routes();
