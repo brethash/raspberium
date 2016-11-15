@@ -2,8 +2,6 @@
 
 namespace Raspberium\Providers;
 
-use Illuminate\Foundation\Auth\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Raspberium\Models\Configuration;
@@ -18,16 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // TODO: Implement view composer???
-        // Share user data to view
-//        var_dump(Auth::user()->toArray());
-//       View::share('user',User::all('name')->first()->toArray());
-//
-//        var_dump(User::all('name')->first()->toArray());
-
-        // Share configuration data to view
-        $configuration = new Configuration;
-        View::share($configuration->getData());
+        //
     }
 
     /**

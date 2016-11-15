@@ -15,6 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        \Raspberium\Http\Middleware\GlobalConfiguration::class
     ];
 
     /**
@@ -30,6 +31,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Raspberium\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Raspberium\Http\Middleware\GlobalConfiguration::class
         ],
 
         'api' => [
