@@ -39,12 +39,12 @@ class CheckKiosk
         if (count($params))
         {
             // And one of them happens to be kiosk and its true
-            if ($request->kiosk == "true")
+            if ($request->kiosk == "enable")
             {
                 // Setup kiosk mode!
                 Session::put($key, "true");
             }
-            else if ($request->kiosk == "false")
+            else if ($request->kiosk == "disable")
             {
                 // We no longer want kiosk mode enabled
                 Session::put($key, "false");
