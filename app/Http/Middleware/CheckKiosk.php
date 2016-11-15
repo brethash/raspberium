@@ -26,9 +26,10 @@ class CheckKiosk
         // If there are no request params found but the kiosk session key exists, we're still in kiosk mode
         if (!count($params) && Session::has($key))
         {
-            // If our session variable is true, set kioskMode to true
+            // If our session variable is enable, set kioskMode to true
             $sessionKiosk = Session::get($key);
-            if ($sessionKiosk == "true")
+
+            if ($sessionKiosk == "enable")
             {
                 $kioskMode = true;
             }
@@ -42,12 +43,12 @@ class CheckKiosk
             if ($request->kiosk == "enable")
             {
                 // Setup kiosk mode!
-                Session::put($key, "true");
+                Session::put($key, "enable");
             }
             else if ($request->kiosk == "disable")
             {
                 // We no longer want kiosk mode enabled
-                Session::put($key, "false");
+                Session::put($key, "disable");
             }
 
         }
