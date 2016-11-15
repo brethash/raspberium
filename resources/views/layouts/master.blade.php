@@ -6,6 +6,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <title>@yield('title')</title>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="/css/jquery-ui/jquery-ui.min.css">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -20,7 +22,6 @@
 
     @if (isset($kiosk))
     <!-- Kiosk Keyboard -->
-    <link rel="stylesheet" href="/css/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/css/keyboard/keyboard.min.css">
     @endif
 
@@ -109,12 +110,13 @@
     <script src="/js/app.min.js"></script>
     <!-- Site common scripts -->
     <script src="/js/scripts.js"></script>
-    @if (isset($kiosk))
     <script src="/js/jquery-ui/jquery-ui.min.js"></script>
+
+    @if (isset($kiosk))
     <script src="/js/keyboard/jquery.keyboard.min.js"></script>
     <script>
         $(function(){
-            $('input,textarea').addClass('keyboard');
+            $('input:not(:checkbox),textarea').addClass('keyboard');
             $('.keyboard').keyboard();
         });
     </script>
