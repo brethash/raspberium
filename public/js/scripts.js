@@ -26,5 +26,32 @@ $(function(){
             $saveText.hide();
             $saveImage.hide();
         },3000);
-    })
+    });
+
+    $('#kioskMode').change(function(){
+        var $saving = $('#saving');
+        var $saveImage = $saving.find('img');
+        var $saveText = $saving.find('span');
+        $saving.show();
+        $saveImage.show();
+
+        var status = "disable";
+
+        if ($('#kioskMode').is(':checked')) {
+            status = "enable";
+        }
+        $.get({
+            url: '/kiosk/'+status,
+            failure: function() {
+                $saveText.html('Save unsuccessful.');
+            }
+        });
+    });
+
+    $("[data-enable='expandOnHover']").on('click', function () {
+        $(this).attr('disabled', true);
+        AdminLTE.pushMenu.expandOnHover();
+        if (!$('body').hasClass('sidebar-collapse'))
+            $("[data-layout='sidebar-collapse']").click();
+    });
 });
