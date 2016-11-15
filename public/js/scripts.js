@@ -42,6 +42,9 @@ $(function(){
         }
         $.get({
             url: '/kiosk/'+status,
+            success: function() {
+                location.reload();
+            },
             failure: function() {
                 $saveText.html('Save unsuccessful.');
             }
