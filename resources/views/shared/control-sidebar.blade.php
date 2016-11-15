@@ -1,9 +1,20 @@
 <!-- Create the tabs -->
 <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href="#control-sidebar-options-tab" data-toggle="tab"><i class="fa fa-wrench"></i></a></li>
     <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
 </ul>
 <!-- Tab panes -->
 <div class="tab-content">
+    <div class="tab-pane active" id="control-sidebar-options-tab">
+        <h4 class="control-sidebar-heading">Options</h4>
+        <div class="form-group">
+            <label class="control-sidebar-subheading">
+                <input type="checkbox" class="pull-right" id="kioskMode" />
+                Toggle kiosk mode
+            </label>
+        </div>
+        <!-- /.form-group -->
+    </div>
     <!-- Settings tab content -->
     <div class="tab-pane" id="control-sidebar-settings-tab">
         <div>
