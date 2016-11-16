@@ -43,7 +43,7 @@ $(function(){
         $.get({
             url: '/kiosk/'+status,
             success: function() {
-                location.reload();
+                location.href = location.href.split("?")[0];
             },
             failure: function() {
                 $saveText.html('Save unsuccessful.');
