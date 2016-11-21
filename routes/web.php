@@ -14,8 +14,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Raspberium\Domain\Relay;
-use Raspberium\Models\Configuration;
+use Raspberium\Domain\Device;
+use Raspberium\Models\Devices;
 use Raspberium\Models\HistoricalDataMonthly;
 use Raspberium\Models\HistoricalDataToday;
 use Raspberium\Models\HistoricalDataWeekly;
@@ -30,7 +30,7 @@ Route::get('actions', function() {
     return view('actions');
 })->middleware('auth');
 
-Route::get('sensors/temperature', 'SensorController@getTemperature');
+Route::get('sensors/temperature', 'SensorController@getTempe:horature');
 Route::get('sensors/humidity', 'SensorController@getHumidity');
 Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumidityObject');
 
@@ -38,26 +38,27 @@ Route::get('relay/{device}/{state}', function($device,$state){
 
     try {
         // Look up device pin by name
-        $configurations = Configuration::getData();
-        $relay = new Relay($configurations[$device . 'Pin']);
+        $devices = Devices::getData();
+        $device = new Device($devices[$device]['pin']);
 
         if ($state == "on")
         {
-            $relay->on();
+            $device->on();
             
         }
         else if ($state == "timer")
         {
-            $relay->setTimerOn();
+            $device->timer();
         }
         else
         {
-            $relay->off();
+            $device->off();
         }
 
         echo 'Success';
     }
     catch (Exception $e) {
+        // TODO: set response headers to trigger success/failure on ajax handlers
         echo 'Communication with device failed.';
     }
 
