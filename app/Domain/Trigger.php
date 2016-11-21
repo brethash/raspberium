@@ -22,7 +22,7 @@ class Trigger {
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $mistingSystem = new Relay($this->configurations['mistingSystem1Pin']);
+        $mistingSystem = new Device($this->configurations['mistingSystem1Pin']);
         $humidity = $dht22->getHumidity();
         $threshold = $this->configurations['humidityThreshold'];
 
@@ -46,7 +46,7 @@ class Trigger {
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $fan = new Relay($this->configurations['fan1Pin']);
+        $fan = new Device($this->configurations['fan1Pin']);
         $temperature = $dht22->getTemperature();
         $threshold = $this->configurations['temperatureThreshold'];
 
@@ -66,8 +66,8 @@ class Trigger {
 
     public function lightsOn()
     {
-        $light1 = new Relay($this->configurations['light1Pin']);
-        $light2 = new Relay($this->configurations['light2Pin']);
+        $light1 = new Device($this->configurations['light1Pin']);
+        $light2 = new Device($this->configurations['light2Pin']);
 
         $light1->on();
         $light2->on();
@@ -76,8 +76,8 @@ class Trigger {
 
     public function lightsOff()
     {
-        $light1 = new Relay($this->configurations['light1Pin']);
-        $light2 = new Relay($this->configurations['light2Pin']);
+        $light1 = new Device($this->configurations['light1Pin']);
+        $light2 = new Device($this->configurations['light2Pin']);
 
         $light1->off();
         $light2->off();
