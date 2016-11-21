@@ -5,7 +5,7 @@ namespace Raspberium\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\View;
 use Raspberium\Models\Configuration;
-use Raspberium\Models\Device;
+use Raspberium\Models\Devices;
 
 class GlobalVariables
 {
@@ -20,7 +20,7 @@ class GlobalVariables
     {
         // Share configuration data to view
         View::share(Configuration::getData());
-        View::share(Device::getData());
+        View::share(Devices::getData());
 
         return $next($request);
     }
