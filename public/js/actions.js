@@ -7,6 +7,9 @@ $(function(){
             url: '/relay/' + $this.data('device') + '/' + $this.data('state'),
             success: function(data){
                 $alertMessage.addClass('success').removeClass('failure').slideDown(500).html(data);
+                $this.parent('btn-group').each(function(){
+                    $(this).removeClass('btn-primary');
+                }).addClass('btn-primary');
             },
             failure: function(data){
                 $alertMessage.addClass('failure').removeClass('success').slideDown(500).html(data);

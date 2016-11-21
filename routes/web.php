@@ -44,6 +44,11 @@ Route::get('relay/{device}/{state}', function($device,$state){
         if ($state == "on")
         {
             $relay->on();
+            
+        }
+        else if ($state == "timer")
+        {
+            $relay->setTimerOn();
         }
         else
         {

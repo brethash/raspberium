@@ -2,7 +2,6 @@
 
 namespace Raspberium\Domain;
 
-// TODO: is there a way to know if the relay is already "on"? Get the current state?
 class Relay extends Gpio
 {
 
@@ -32,6 +31,7 @@ class Relay extends Gpio
         else
             return true;
     }
+    
     
     public static function getMistingSystem1Pin()
     {
