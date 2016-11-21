@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Raspberium\Models\Device;
+use Raspberium\Models\Devices;
 
 class DevicesTableSeeder extends Seeder
 {
@@ -87,7 +87,7 @@ class DevicesTableSeeder extends Seeder
 
         foreach ($configurations as $config)
         {
-            Device::create([
+            Devices::create([
                 'name' => $config['name'],
                 'niceName' => $config['niceName'],
                 'pin' => $config['pin'],
