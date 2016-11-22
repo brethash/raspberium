@@ -34,7 +34,7 @@ Route::get('sensors/temperature', 'SensorController@getTempe:horature');
 Route::get('sensors/humidity', 'SensorController@getHumidity');
 Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumidityObject');
 
-Route::get('relay/{device}/{state}', function($device,$state){
+Route::get('device/{device}/{state}', function($device,$state){
 
     try {
         // Look up device pin by name
