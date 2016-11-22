@@ -3,6 +3,7 @@
 namespace Raspberium\Domain;
 
 use Raspberium\Models\Configuration;
+use Raspberium\Models\Devices;
 use Raspberium\Models\HistoricalDataDaily;
 use Raspberium\Models\HistoricalDataMonthly;
 use Raspberium\Models\HistoricalDataToday;
@@ -12,17 +13,19 @@ use Raspberium\Models\HistoricalDataYearly;
 class Trigger {
 
     protected $configurations;
+    protected $devices;
 
     public function __construct()
     {
         $this->configurations =  Configuration::getData();
+        $this->devices = Devices::getData();
     }
 
     public function checkHumidity()
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $mistingSystem = new Device($this->configurations['mistingSystem1Pin']);
+        $mistingSystem = new Device($this->devices['pump1']['pin']);
         $humidity = $dht22->getHumidity();
         $threshold = $this->configurations['humidityThreshold'];
 
@@ -46,12 +49,13 @@ class Trigger {
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $fan = new Device($this->configurations['fan1Pin']);
+        $fan = new Device($this->devices['fan1']['pin']);
         $temperature = $dht22->getTemperature();
         $threshold = $this->configurations['temperatureThreshold'];
 
-        if ($temperature > 85)
+        if ($temperature > $threshold)
         {
+            // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
             $on = $fan->on();
         }
         else
@@ -66,8 +70,8 @@ class Trigger {
 
     public function lightsOn()
     {
-        $light1 = new Device($this->configurations['light1Pin']);
-        $light2 = new Device($this->configurations['light2Pin']);
+        $light1 = new Device($this->devices['light1']['pin']);
+        $light2 = new Device($this->devices['light2']['pin']);
 
         $light1->on();
         $light2->on();
@@ -76,8 +80,8 @@ class Trigger {
 
     public function lightsOff()
     {
-        $light1 = new Device($this->configurations['light1Pin']);
-        $light2 = new Device($this->configurations['light2Pin']);
+        $light1 = new Device($this->devices['light1']['pin']);
+        $light2 = new Device($this->devices['light2']['pin']);
 
         $light1->off();
         $light2->off();
@@ -164,11 +168,4 @@ class Trigger {
         $monthlyData->truncate();
     }
 
-    /**
-     * @return array
-     */
-    public function getConfigurations()
-    {
-        return $this->configurations;
-    }
 }
