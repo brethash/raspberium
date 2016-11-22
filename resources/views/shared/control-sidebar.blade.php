@@ -79,7 +79,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 1 GPIO Pin:
-                        <input type="text" name="light1Pin" value="{{ $light1Pin }}" />
+                        <input type="text" name="light1Pin" value="{{ $light1['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -87,7 +87,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 2 GPIO Pin:
-                        <input type="text" name="light2Pin" value="{{ $light2Pin }}" />
+                        <input type="text" name="light2Pin" value="{{ $light2['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -95,7 +95,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Fan 1 GPIO Pin:
-                        <input type="text" name="fan1Pin" value="{{ $fan1Pin }}" />
+                        <input type="text" name="fan1Pin" value="{{ $fan1['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -103,7 +103,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Misting System 1 GPIO Pin:
-                        <input type="text" name="mistingSystem1Pin" value="{{ $mistingSystem1Pin }}" />
+                        <input type="text" name="mistingSystem1Pin" value="{{ $pump1['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -111,7 +111,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         DHT22 GPIO Pin:
-                        <input type="text" name="dht22Pin" value="{{ $dht22Pin }}" />
+                        <input type="text" name="dht22Pin" value="{{ $dht22['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
