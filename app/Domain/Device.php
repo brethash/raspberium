@@ -67,28 +67,28 @@ class Device extends Gpio
         return false;
     }
     
-    public static function getMistingSystem1Pin()
+    public function getPump1Pin()
     {
-        $configuration = Device::getConfigurations();
-        return $configuration['mistingSystem1Pin'];
+        $device = $this->devices;
+        return $device['pump1']['pin'];
     }
 
-    public static function getLight1Pin()
+    public function getLight1Pin()
     {
-        $configuration = Device::getConfigurations();
-        return $configuration['light1Pin'];
+        $device = $this->devices;
+        return $device['light1']['pin'];
     }
 
-    public static function getLight2Pin()
+    public function getLight2Pin()
     {
-        $configuration = Device::getConfigurations();
-        return $configuration['light2Pin'];
+        $device = $this->devices;
+        return $device['light2']['pin'];
     }
 
-    public static function getFan1Pin()
+    public function getFan1Pin()
     {
-        $configuration = Device::getConfigurations();
-        return $configuration['fan1Pin'];
+        $device = $this->devices;
+        return $device['fan1']['pin'];
     }
     
     private function setState($pin,$state)
