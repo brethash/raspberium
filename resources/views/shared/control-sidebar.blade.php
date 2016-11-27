@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label class="control-sidebar-subheading">
                     Target Temperature (&deg;C):
-                    <input type="text" name="temperatureThreshold" value="{{ $temperatureThreshold }}" />
+                    <input type="number" name="temperatureThreshold" value="{{ $temperatureThreshold }}" />
                 </label>
             </div>
             <!-- /.form-group -->
@@ -21,7 +21,7 @@
             <div class="form-group">
                 <label class="control-sidebar-subheading">
                     Target Humidity (%):
-                    <input type="text" name="humidityThreshold" value="{{ $humidityThreshold }}" />
+                    <input type="number" name="humidityThreshold" value="{{ $humidityThreshold }}" />
                 </label>
             </div>
             <!-- /.form-group -->
@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label class="control-sidebar-subheading">
                     Light 1 On (HH:mm):
-                    <input type="text" name="light1On" value="{{ $light1On }}" />
+                    <input type="number" name="light1On" value="{{ $light1On }}" />
                 </label>
             </div>
             <!-- /.form-group -->
@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label class="control-sidebar-subheading">
                     Light 1 Off (HH:mm):
-                    <input type="text" name="light1Off" value="{{ $light1Off }}" />
+                    <input type="number" name="light1Off" value="{{ $light1Off }}" />
                 </label>
             </div>
             <!-- /.form-group -->
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="control-sidebar-subheading">
                     Light 2 On (HH:mm):
-                    <input type="text" name="light2On" value="{{ $light2On }}" />
+                    <input type="number" name="light2On" value="{{ $light2On }}" />
                 </label>
             </div>
             <!-- /.form-group -->
@@ -53,7 +53,7 @@
             <div class="form-group">
                 <label class="control-sidebar-subheading">
                     Light 2 Off (HH:mm):
-                    <input type="text" name="light2Off" value="{{ $light2Off }}" />
+                    <input type="number" name="light2Off" value="{{ $light2Off }}" />
                 </label>
             </div>
             <!-- /.form-group -->
@@ -87,7 +87,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 1 GPIO Pin:
-                        <input type="text" name="light1Pin" data-device="light1" value="{{ $light1['pin'] }}" />
+                        <input type="number" name="light1Pin" data-device="light1" value="{{ $light1['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -95,7 +95,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Light 2 GPIO Pin:
-                        <input type="text" name="light2Pin" data-device="light2" value="{{ $light2['pin'] }}" />
+                        <input type="number" name="light2Pin" data-device="light2" value="{{ $light2['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -103,7 +103,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Fan 1 GPIO Pin:
-                        <input type="text" name="fan1Pin" data-device="fan1" value="{{ $fan1['pin'] }}" />
+                        <input type="number" name="fan1Pin" data-device="fan1" value="{{ $fan1['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -111,7 +111,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         Misting System 1 GPIO Pin:
-                        <input type="text" name="pump1Pin" data-device="pump1" value="{{ $pump1['pin'] }}" />
+                        <input type="number" name="pump1Pin" data-device="pump1" value="{{ $pump1['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
@@ -119,7 +119,7 @@
                 <div class="form-group">
                     <label class="control-sidebar-subheading">
                         DHT22 GPIO Pin:
-                        <input type="text" name="dht22Pin" data-device="dht22" value="{{ $dht22['pin'] }}" />
+                        <input type="number" name="dht22Pin" data-device="dht22" value="{{ $dht22['pin'] }}" />
                     </label>
                 </div>
                 <!-- /.form-group -->
