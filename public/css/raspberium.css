@@ -7,3 +7,4 @@
 .alert-box h2 {font-size: 20px; padding: 8px; margin: 0; border-radius: 2px; display: none;}
 .alert-box h2.success {color:#fff; background: #00a65a;}
 .alert-box h2.failure {color:#fff; background: #dd4444;}
+#control-sidebar-settings-tab form .saving{display:none;}

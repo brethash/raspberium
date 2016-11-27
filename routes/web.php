@@ -83,6 +83,10 @@ Route::get('configuration/update', function(Request $request) {
     return Configuration::saveConfiguration($request->all());
 });
 
+Route::get('devices/update/pin', function(Request $request) {
+    return Devices::setPin($request->input('name'),$request->input('pin'));
+});
+
 Route::get('kiosk/{state}', function($state) {
     if ($state != null)
     {

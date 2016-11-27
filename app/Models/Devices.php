@@ -51,4 +51,14 @@ class Devices extends Model
         return "true";
     }
 
+    public static function setPin($name,$pin)
+    {
+        Devices::where('name', $name)
+            ->update(['pin' => $pin]);
+
+
+        // TODO: set response headers to trigger success/failure on ajax handlers
+        return "true";
+    }
+
 }
