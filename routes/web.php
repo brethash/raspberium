@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Raspberium\Domain\Device;
+use Raspberium\Models\Configuration;
 use Raspberium\Models\Devices;
 use Raspberium\Models\HistoricalDataMonthly;
 use Raspberium\Models\HistoricalDataToday;
