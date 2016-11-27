@@ -35,13 +35,15 @@ class Gpio implements Pin
     {
         // Send a status to the pin
         $return = 0;
+
         exec("gpio export " . $pinId . " out", $output, $return);
 
         // If the return is not 0, there was an error. And that's a bummer.
         if ($return > 0)
             return false;
 
-        return $output;
+        // GPIO $output is worthless as is.
+        return true;
     }
 
     /**
@@ -58,7 +60,8 @@ class Gpio implements Pin
         if ($return > 0)
             return false;
 
-        return $output;
+        // GPIO $output is worthless as is. 
+        return true;
     }
 
     /**
