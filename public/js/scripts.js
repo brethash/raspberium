@@ -3,7 +3,7 @@
 $(function(){
     // Right sidebar
     $('form#configurations input').change(function(){
-        var $saving = $(this).find('.saving');
+        var $saving = $(this).closest('form').find('.saving');
         var $saveImage = $saving.find('img');
         var $saveText = $saving.find('span');
         $saving.show();
@@ -29,7 +29,7 @@ $(function(){
     });
 
     $('form#devices input').change(function(){
-        var $saving = $(this).find('.saving');
+        var $saving = $(this).closest('form').find('.saving');
         var $saveImage = $saving.find('img');
         var $saveText = $saving.find('span');
         $saving.show();
