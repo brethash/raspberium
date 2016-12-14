@@ -29,7 +29,8 @@ class DHT22 extends Gpio
         if ($dht22 == null)
         {
             $return_var = 0;
-            exec('sudo /usr/bin/loldht', $output, $return_var);
+            // TODO: Remove that godawful sudo
+            exec('/usr/bin/loldht', $output, $return_var);
             return $output;
         }
         else
@@ -146,8 +147,8 @@ class DHT22 extends Gpio
      * @return integer
      */
     public function getDht22Pin() {
-        $configuration = $this->getConfigurations();
-        return $configuration['dht22Pin'];
+        $devices = $this->devices;
+        return $devices['dht22']['pin'];
     }
 
 }

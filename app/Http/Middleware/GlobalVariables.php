@@ -5,8 +5,9 @@ namespace Raspberium\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\View;
 use Raspberium\Models\Configuration;
+use Raspberium\Models\Devices;
 
-class GlobalConfiguration
+class GlobalVariables
 {
     /**
      * Handle an incoming request.
@@ -18,8 +19,8 @@ class GlobalConfiguration
     public function handle($request, Closure $next)
     {
         // Share configuration data to view
-        $configuration = new Configuration;
-        View::share($configuration->getData());
+        View::share(Configuration::getData());
+        View::share(Devices::getData());
 
         return $next($request);
     }

@@ -2,8 +2,8 @@
 
 $(function(){
     // Right sidebar
-    $('form#configuration input').change(function(){
-        var $saving = $('#saving');
+    $('form#configurations input').change(function(){
+        var $saving = $(this).closest('form').find('.saving');
         var $saveImage = $saving.find('img');
         var $saveText = $saving.find('span');
         $saving.show();
@@ -12,6 +12,36 @@ $(function(){
         $.get({
             url: '/configuration/update',
             data: $('form#configuration').serialize(),
+            success: function() {
+                $saveText.html('Saved.');
+            },
+            failure: function() {
+                $saveText.html('Save unsuccessful.');
+            }
+        });
+
+        $saveText.show();
+
+        setTimeout(function(){
+            $saveText.hide();
+            $saveImage.hide();
+        },3000);
+    });
+
+    $('form#devices input').change(function(){
+        var $saving = $(this).closest('form').find('.saving');
+        var $saveImage = $saving.find('img');
+        var $saveText = $saving.find('span');
+        $saving.show();
+        $saveImage.show();
+
+        var deviceData = {};
+        deviceData.name = $(this).data('device');
+        deviceData.pin = $(this).val();
+
+        $.get({
+            url: '/devices/update/pin',
+            data: deviceData,
             success: function() {
                 $saveText.html('Saved.');
             },
