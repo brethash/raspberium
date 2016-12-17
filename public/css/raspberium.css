@@ -8,3 +8,7 @@
 .alert-box h2.success {color:#fff; background: #00a65a;}
 .alert-box h2.failure {color:#fff; background: #dd4444;}
 .tab-pane.active form .saving{display:none;}
+
+@media (max-width: 991px) {
+    .login .btn.btn-link {float: right;}
+}
