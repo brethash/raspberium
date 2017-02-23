@@ -4,7 +4,7 @@ namespace Raspberium\Domain;
 
 use Illuminate\Support\Facades\Cache;
 
-class Bme280 extends Gpio
+class Bme280
 {
 
     /**
@@ -14,44 +14,27 @@ class Bme280 extends Gpio
      */
     public function __construct()
     {
-        parent::__construct($this->getDht22Pin());
-    }
-    
-    /**
-     * Reads the output from the loldht script
-     *
-     * @return array
-     */
-    public function read() {
-        // usage: loldht <pin> (<tries>)
-        $dht22 = Cache::get('dht22');
-
-        if ($dht22 == null)
-        {
-            $return_var = 0;
-            exec('sudo /usr/bin/loldht', $output, $return_var);
-            return $output;
-        }
-        else
-        {
-
-        }
+        // The BME280 communicates via the I2C interface, so we don't even NEED to specify a pin!
     }
 
     /**
-     * Parses the humidity into a double from the getSplitValues string
+     * Gets the humidity value from the BME280
      *
      * @return string
      */
     public function getHumidity()
     {
 
-        $splitValues = $this->getSplitValues();
-        if ($splitValues)
+        $bme280 = Cache::get('bme280Humidity');
+
+        if ($bme280 == null)
         {
-            $humidity = $splitValues[0];
-            $humidityArray = explode('=', $humidity);
-            return trim($humidityArray[1]);
+            $return_var = 0;
+            exec('python ' . $this->getBme280BasePath() . 'humidity.py', $output, $return_var);
+            // TODO: check if this is a valid number value before caching it
+
+            Cache::put('bme280Humidity',$output, 0.0333);
+            return $output;
         }
         return false;
 
@@ -64,13 +47,40 @@ class Bme280 extends Gpio
      */
     public function getTemperature()
     {
-        $splitValues = $this->getSplitValues();
-        if ($splitValues)
+
+        $bme280 = Cache::get('bme280Temperature');
+
+        if ($bme280 == null)
         {
-            $temperature = $splitValues[1];
-            $temperatureArray = explode('=', $temperature);
-            Cache::put('temperature', $temperatureArray[1], 0.13);
-            return trim(str_replace('*C', '', $temperatureArray[1]));
+            $return_var = 0;
+            exec('python ' . $this->getBme280BasePath() . 'temperature.py', $output, $return_var);
+            // TODO: check if this is a valid number value before caching it
+
+            Cache::put('bme280Temperature',$output, 0.0333);
+            return $output;
+        }
+        return false;
+
+    }
+
+    /**
+     * Gets the humidity value from the BME280
+     *
+     * @return string
+     */
+    public function getPressure()
+    {
+
+        $bme280 = Cache::get('bme280Pressure');
+
+        if ($bme280 == null)
+        {
+            $return_var = 0;
+            exec('python ' . $this->getBme280BasePath() . 'pressure.py', $output, $return_var);
+            // TODO: check if this is a valid number value before caching it
+
+            Cache::put('bme280Pressure',$output, 0.0333);
+            return $output;
         }
         return false;
 
@@ -79,75 +89,32 @@ class Bme280 extends Gpio
     /**
      * Returns a convenient json object with the temperature and humidity, ripe for parsing!
      *
-     * @return \stdClass
-     */
-    public function getTemperatureHumidityObject()
-    {
-        // DHT22 reading doesn't exist in the cache
-        $output = new \stdClass();
-        $output->humidity = $this->getHumidity();
-        $output->temperature = $this->getTemperature();
-
-        return $output;
-
-    }
-
-    /**
-     * Returns a convenient json object with the temperature and humidity, ripe for parsing!
-     *
      * @return string
      */
-    public function getTemperatureHumidityJsonObject()
+    public function getTemperatureHumidityPressureJsonObject()
     {
-        $dht22json = Cache::get('dht22json');
+        $bme280json = Cache::get('bme280json');
 
-        if ($dht22json == null)
+        if ($bme280json == null)
         {
-            // DHT22 reading doesn't exist in the cache
+            // bme280 reading doesn't exist in the cache
             $output = new \stdClass();
             $output->humidity = $this->getHumidity();
             $output->temperature = $this->getTemperature();
-            $dht22json = json_encode($output);
-            Cache::put('dht22json', $dht22json, 0.13);
+            $output->pressure = $this->getPressure();
+            $bme280json = json_encode($output);
+
+            // BME280 datasheet claims a 1s response time. So we'll set the cache to 2s to avoid collisions
+            Cache::put('bme280json', $bme280json, 0.0333);
         }
 
-        return $dht22json;
+        return $bme280json;
 
     }
 
-    /**
-     * Splits the read value from the loldht script for parsing
-     *
-     * @return array
-     */
-    private function getSplitValues()
+    private function getBme280BasePath()
     {
-        // TODO: check if readValue is a valid array
-        $dht22 = Cache::get('dht22');
-
-        if ($dht22 == null) {
-            // If there isn't a currently cached dht22 reading, lets read the sensor and return the exploded output.
-            $readValue = $this->read();
-            if (!empty($readValue)) {
-                $output = array_pop($readValue);
-                $explodeded = explode('%', $output);
-                Cache::put('dht22', $explodeded, 0.13);
-                return $explodeded;
-            }
-        }
-
-        // Otherwise, lets return the cached dht22 reading.
-        return $dht22;
-    }
-
-    /**
-     * Gets the configured DHT22 pin number
-     *
-     * @return integer
-     */
-    public function getDht22Pin() {
-        $configuration = $this->getConfigurations();
-        return $configuration['dht22Pin'];
+        return $_SERVER['DOCUMENT_ROOT'] . '/resources/bme280/';
     }
 
 }
