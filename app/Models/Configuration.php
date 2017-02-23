@@ -18,7 +18,7 @@ class Configuration extends Model
     {
 
         $configurations = Configuration::all();
-
+        
         return [
             'temperatureThreshold' => $configurations->where('name','temperatureThreshold')->first()['setting'],
             'humidityThreshold' => $configurations->where('name','humidityThreshold')->first()['setting'],
@@ -28,8 +28,8 @@ class Configuration extends Model
             'light2Off' => $configurations->where('name','light2Off')->first()['setting'],
             'light1Pin' => $configurations->where('name','light1Pin')->first()['setting'],
             'light2Pin' => $configurations->where('name','light2Pin')->first()['setting'],
-            'fanPin' => $configurations->where('name','fanPin')->first()['setting'],
-            'mistingSystemPin' => $configurations->where('name','mistingSystemPin')->first()['setting'],
+            'fan1Pin' => $configurations->where('name','fan1Pin')->first()['setting'],
+            'mistingSystem1Pin' => $configurations->where('name','mistingSystem1Pin')->first()['setting'],
             'dht22Pin' => $configurations->where('name','dht22Pin')->first()['setting'],
         ];
         

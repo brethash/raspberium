@@ -4,6 +4,7 @@ namespace Raspberium\Domain;
 
 use Raspberium\Contracts\Pin;
 use Raspberium\Models\Configuration;
+use Raspberium\Models\Devices;
 
 class Gpio implements Pin
 {
@@ -11,6 +12,8 @@ class Gpio implements Pin
     protected $pinId;
     // Configuration data
     protected $configurations;
+    // Devices data
+    protected $devices;
 
     /**
      * Gpio constructor.
@@ -21,6 +24,7 @@ class Gpio implements Pin
         // TODO: require this to be an int within the available GPIO range
         $this->pinId = $pinId;
         $this->configurations =  Configuration::getData();
+        $this->devices = Devices::getData();
     }
 
     /**
@@ -31,13 +35,15 @@ class Gpio implements Pin
     {
         // Send a status to the pin
         $return = 0;
+
         exec("gpio export " . $pinId . " out", $output, $return);
 
         // If the return is not 0, there was an error. And that's a bummer.
         if ($return > 0)
             return false;
 
-        return $output;
+        // GPIO $output is worthless as is.
+        return true;
     }
 
     /**
@@ -54,7 +60,8 @@ class Gpio implements Pin
         if ($return > 0)
             return false;
 
-        return $output;
+        // GPIO $output is worthless as is. 
+        return true;
     }
 
     /**
@@ -91,13 +98,5 @@ class Gpio implements Pin
     public function setPinId(int $pinId)
     {
         $this->pinId = $pinId;
-    }
-
-    /**
-     * @return array
-     */
-    public function getConfigurations()
-    {
-        return $this->configurations;
     }
 }

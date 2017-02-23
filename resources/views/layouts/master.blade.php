@@ -6,6 +6,8 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <title>@yield('title')</title>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="/css/jquery-ui/jquery-ui.min.css">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -17,6 +19,11 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/css/skins/_all-skins.min.css">
+
+    @if (isset($kiosk))
+    <!-- Kiosk Keyboard -->
+    <link rel="stylesheet" href="/css/keyboard/keyboard.min.css">
+    @endif
 
     <!-- Custom Raspberium styles -->
     <link rel="stylesheet" href="/css/raspberium.css">
@@ -30,7 +37,7 @@
 
 </head>
 
-<body class="hold-transition skin-green fixed sidebar-mini">
+<body class="hold-transition skin-green fixed sidebar-mini sidebar-collapse">
     <!-- Site wrapper -->
     <div class="wrapper">
 
@@ -102,8 +109,18 @@
     <!-- AdminLTE App -->
     <script src="/js/app.min.js"></script>
     <!-- Site common scripts -->
-    <script src="/js/demo.js"></script>
     <script src="/js/scripts.js"></script>
+    <script src="/js/jquery-ui/jquery-ui.min.js"></script>
+
+    @if (isset($kiosk))
+    <script src="/js/keyboard/jquery.keyboard.min.js"></script>
+    <script>
+        $(function(){
+            $('input:not(:checkbox),textarea').addClass('keyboard');
+            $('.keyboard').keyboard();
+        });
+    </script>
+    @endif
     @yield('scripts')
 
 </body>

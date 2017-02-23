@@ -3,6 +3,7 @@
 namespace Raspberium\Domain;
 
 use Raspberium\Models\Configuration;
+use Raspberium\Models\Devices;
 use Raspberium\Models\HistoricalDataDaily;
 use Raspberium\Models\HistoricalDataMonthly;
 use Raspberium\Models\HistoricalDataToday;
@@ -12,17 +13,19 @@ use Raspberium\Models\HistoricalDataYearly;
 class Trigger {
 
     protected $configurations;
+    protected $devices;
 
     public function __construct()
     {
         $this->configurations =  Configuration::getData();
+        $this->devices = Devices::getData();
     }
 
     public function checkHumidity()
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $mistingSystem = new Relay($this->configurations['mistingSystemPin']);
+        $mistingSystem = new Device($this->devices['pump1']['pin']);
         $humidity = $dht22->getHumidity();
         $threshold = $this->configurations['humidityThreshold'];
 
@@ -34,13 +37,9 @@ class Trigger {
         }
         else
         {
-            // Don't turn the pump off until it hits that sweet sweet hysteresis
-            if ($humidity == $threshold){
-                // Turn the system off. We've reached terminal humidity!
-                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-                $off = $mistingSystem->off();
-            }
-
+            // Turn the system off. We've reached terminal humidity!
+            // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+            $off = $mistingSystem->off();
         }
 
         return true;
@@ -50,23 +49,20 @@ class Trigger {
     {
         /** @var DHT22 $dht22 */
         $dht22 = new DHT22;
-        $fan = new Relay($this->configurations['fanPin']);
+        $fan = new Device($this->devices['fan1']['pin']);
         $temperature = $dht22->getTemperature();
         $threshold = $this->configurations['temperatureThreshold'];
 
-        if ($temperature > 85)
+        if ($temperature > $threshold)
         {
+            // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
             $on = $fan->on();
         }
         else
         {
-            // Don't turn the pump off until it hits that sweet sweet hysteresis
-            if ($temperature == $threshold){
-                // Turn the system off. We've reached terminal humidity!
-                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-                $off = $fan->off();
-            }
-
+            // Turn the system off. We've reached terminal humidity!
+            // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+            $off = $fan->off();
         }
 
         return true;
@@ -74,8 +70,8 @@ class Trigger {
 
     public function lightsOn()
     {
-        $light1 = new Relay($this->configurations['light1Pin']);
-        $light2 = new Relay($this->configurations['light2Pin']);
+        $light1 = new Device($this->devices['light1']['pin']);
+        $light2 = new Device($this->devices['light2']['pin']);
 
         $light1->on();
         $light2->on();
@@ -84,8 +80,8 @@ class Trigger {
 
     public function lightsOff()
     {
-        $light1 = new Relay($this->configurations['light1Pin']);
-        $light2 = new Relay($this->configurations['light2Pin']);
+        $light1 = new Device($this->devices['light1']['pin']);
+        $light2 = new Device($this->devices['light2']['pin']);
 
         $light1->off();
         $light2->off();
@@ -172,11 +168,4 @@ class Trigger {
         $monthlyData->truncate();
     }
 
-    /**
-     * @return array
-     */
-    public function getConfigurations()
-    {
-        return $this->configurations;
-    }
 }
