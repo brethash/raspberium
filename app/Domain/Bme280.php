@@ -41,7 +41,7 @@ class Bme280
     }
 
     /**
-     * Parses the temperature into a double from the getSplitValues string
+     * Get the temperature value from the BME280
      *
      * @return mixed
      */
