@@ -30,7 +30,6 @@ class Configuration extends Model
             'light2Pin' => $configurations->where('name','light2Pin')->first()['setting'],
             'fan1Pin' => $configurations->where('name','fan1Pin')->first()['setting'],
             'mistingSystem1Pin' => $configurations->where('name','mistingSystem1Pin')->first()['setting'],
-            'dht22Pin' => $configurations->where('name','dht22Pin')->first()['setting'],
         ];
         
     }
