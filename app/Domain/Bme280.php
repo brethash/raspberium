@@ -30,11 +30,13 @@ class Bme280
         if ($bme280 == null)
         {
             $return_var = 0;
-            exec('python ' . $this->getBme280BasePath() . 'humidity.py', $output, $return_var);
+            exec('sudo python ' . $this->getBme280BasePath() . 'humidity.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
+            if ($return_var == 0) {
+                Cache::put('bme280Humidity',$output, 0.0333);
+                return $output[0];
+            }
 
-            Cache::put('bme280Humidity',$output, 0.0333);
-            return $output;
         }
         return false;
 
@@ -48,21 +50,21 @@ class Bme280
     public function getTemperature()
     {
 
-//        $bme280 = Cache::get('bme280Temperature');
-//
-//        if ($bme280 == null)
-//        {
+        $bme280 = Cache::get('bme280Temperature');
+
+        if ($bme280 == null)
+        {
         echo "<pre>";
-        var_dump($this->getBme280BasePath() . 'temperature.py');
             $return_var = 0;
-            exec('python ' . $this->getBme280BasePath() . 'temperature.py', $output, $return_var);
+            exec('sudo python ' . $this->getBme280BasePath() . 'temperature.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
-var_dump($output);
-        echo "</pre>";
-            //Cache::put('bme280Temperature',$output, 0.0333);
-            return $output;
-//        }
-//        return false;
+            if ($return_var == 0) {
+                Cache::put('bme280Temperature',$output, 0.0333);
+                return $output[0];
+            }
+
+        }
+        return false;
 
     }
 
@@ -79,11 +81,14 @@ var_dump($output);
         if ($bme280 == null)
         {
             $return_var = 0;
-            exec('python ' . $this->getBme280BasePath() . 'pressure.py', $output, $return_var);
+            exec('sudo python ' . $this->getBme280BasePath() . 'pressure.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
 
-            Cache::put('bme280Pressure',$output, 0.0333);
-            return $output;
+            if ($return_var == 0) {
+                Cache::put('bme280Pressure',$output, 0.0333);
+                return $output[0];
+            }
+
         }
         return false;
 
