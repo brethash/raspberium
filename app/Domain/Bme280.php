@@ -117,7 +117,7 @@ var_dump($output);
 
     private function getBme280BasePath()
     {
-        return $_SERVER['DOCUMENT_ROOT'] . '/resources/bme280/';
+        return $_SERVER['DOCUMENT_ROOT'] . '/bme280/';
     }
 
 }
