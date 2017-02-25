@@ -48,18 +48,21 @@ class Bme280
     public function getTemperature()
     {
 
-        $bme280 = Cache::get('bme280Temperature');
-
-        if ($bme280 == null)
-        {
+//        $bme280 = Cache::get('bme280Temperature');
+//
+//        if ($bme280 == null)
+//        {
+        echo "<pre>";
+        var_dump($this->getBme280BasePath() . 'temperature.py');
             $return_var = 0;
             exec('python ' . $this->getBme280BasePath() . 'temperature.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
-
-            Cache::put('bme280Temperature',$output, 0.0333);
+var_dump($output);
+        echo "</pre>";
+            //Cache::put('bme280Temperature',$output, 0.0333);
             return $output;
-        }
-        return false;
+//        }
+//        return false;
 
     }
 
