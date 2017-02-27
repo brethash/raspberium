@@ -68,17 +68,17 @@
                             <li class="btn-group">
                                 <button class="btn btn-default @if ($pump1['state'] == 'on') btn-primary @endif "
                                         id="pump1On"
-                                        data-device="mistingSystem1"
+                                        data-device="pump1"
                                         data-state="on"
                                 >Turn Pump On</button>
                                 <button class="btn btn-default @if ($pump1['state'] == 'timer') btn-primary @endif "
                                         id="pump1Timer"
-                                        data-device="mistingSystem1"
+                                        data-device="pump1"
                                         data-state="timer"
                                 >Timer</button>
                                 <button class="btn btn-default @if ($pump1['state'] == 'off') btn-primary @endif "
                                         id="pump1Off"
-                                        data-device="mistingSystem1"
+                                        data-device="pump1"
                                         data-state="off"
                                 >Turn Pump Off</button>
                             </li>
