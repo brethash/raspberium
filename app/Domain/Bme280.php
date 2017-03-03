@@ -95,7 +95,7 @@ class Bme280
     }
 
     /**
-     * Returns a convenient json object with the temperature and humidity, ripe for parsing!
+     * Returns a convenient json object with the temperature, humidity, and pressure, ripe for parsing!
      *
      * @return string
      */

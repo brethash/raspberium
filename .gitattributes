@@ -1,4 +1,7 @@
 * text=auto
+public/js/jquery-ui linguist-vendored=false
+public/js/keyboard linguist-vendored=false
+public/js/jquery-ui linguist-vendored=false
 *.css linguist-vendored
 *.scss linguist-vendored
 *.rb linguist-language=PHP
