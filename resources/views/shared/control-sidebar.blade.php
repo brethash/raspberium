@@ -116,14 +116,6 @@
                 </div>
                 <!-- /.form-group -->
 
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        DHT22 GPIO Pin:
-                        <input type="number" name="dht22Pin" data-device="dht22" value="{{ $dht22['pin'] }}" />
-                    </label>
-                </div>
-                <!-- /.form-group -->
-
                 {{ csrf_field() }}
 
                 <p class="saving">

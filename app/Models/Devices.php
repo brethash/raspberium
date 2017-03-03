@@ -28,7 +28,6 @@ class Devices extends Model
             'fan2' => $devices->where('name','fan2')->first(),
             'misc1' => $devices->where('name','misc1')->first(),
             'misc2' => $devices->where('name','misc2')->first(),
-            'dht22' => $devices->where('name','dht22')->first(),
             'bme280' => $devices->where('name','bme280')->first()
         ];
         

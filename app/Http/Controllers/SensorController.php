@@ -2,7 +2,7 @@
 
 namespace Raspberium\Http\Controllers;
 
-use Raspberium\Domain\DHT22;
+use Raspberium\Domain\Bme280;
 
 class SensorController extends Controller
 {
@@ -14,28 +14,26 @@ class SensorController extends Controller
 
     public function getTemperature()
     {
-        $dht22 = new DHT22;
-        echo $dht22->getTemperature();
+        $bme280 = new Bme280;
+        echo $bme280->getTemperature();
     }
 
     public function getHumidity()
     {
-        $dht22 = new DHT22;
-        echo $dht22->getHumidity();
-    }
-    
-    public function getTemperatureHumidityObject()
-    {
-        $dht22 = new DHT22;
-        echo $dht22->getTemperatureHumidityJsonObject();
+        $bme280 = new Bme280;
+        echo $bme280->getHumidity();
     }
 
-    public function debugDht22()
+    public function getPressure()
     {
-        $dht22 = new DHT22;
-        echo "<pre>";
-        var_dump($dht22->read());
-        echo "</pre>";
+        $bme280 = new Bme280;
+        echo $bme280->getPressure();
+    }
+    
+    public function getTemperatureHumidityPressureJsonObject()
+    {
+        $bme280 = new Bme280;
+        echo $bme280->getTemperatureHumidityPressureJsonObject();
     }
 
 }

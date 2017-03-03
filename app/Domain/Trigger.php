@@ -23,10 +23,10 @@ class Trigger {
 
     public function checkHumidity()
     {
-        /** @var DHT22 $dht22 */
-        $dht22 = new DHT22;
+        /** @var Bme280 $bme280 */
+        $bme280 = new Bme280;
         $mistingSystem = new Device($this->devices['pump1']['pin']);
-        $humidity = $dht22->getHumidity();
+        $humidity = $bme280->getHumidity();
         $threshold = $this->configurations['humidityThreshold'];
 
         // If the humidity is lower than the threshold, turn the misting system on
@@ -47,10 +47,10 @@ class Trigger {
 
     public function checkTemperature()
     {
-        /** @var DHT22 $dht22 */
-        $dht22 = new DHT22;
+        /** @var Bme280 $bme280 */
+        $bme280 = new Bme280();
         $fan = new Device($this->devices['fan1']['pin']);
-        $temperature = $dht22->getTemperature();
+        $temperature = $bme280->getTemperature();
         $threshold = $this->configurations['temperatureThreshold'];
 
         if ($temperature > $threshold)
@@ -90,12 +90,11 @@ class Trigger {
 
     public static function recordData()
     {
-        /** @var DHT22 $dht22 */
-        $dht22 = new DHT22;
-        $dht22Data = $dht22->getTemperatureHumidityObject();
+        /** @var Bme280 $bme280 */
+        $bme280 = new Bme280;
         $historicalDataToday = new HistoricalDataToday;
-        $historicalDataToday->temperature = $dht22Data->temperature;
-        $historicalDataToday->humidity = $dht22Data->humidity;
+        $historicalDataToday->temperature = $bme280->getTemperature();
+        $historicalDataToday->humidity = $bme280->getHumidity();
         $historicalDataToday->recorded_at = date('Y-m-d H:i:s',strtotime('now'));
         $historicalDataToday->save();
     }

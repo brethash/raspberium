@@ -70,13 +70,6 @@ class DevicesTableSeeder extends Seeder
                 'status' => 'off'
             ],
             [
-                'name' => 'dht22',
-                'niceName' => 'DHT22',
-                'pin' => '7',
-                'state' => 'on',
-                'status' => 'on'
-            ],
-            [
                 'name' => 'bme280',
                 'niceName' => 'BME280',
                 'pin' => '0',

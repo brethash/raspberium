@@ -31,9 +31,10 @@ Route::get('actions', function() {
     return view('actions');
 })->middleware('auth');
 
-Route::get('sensors/temperature', 'SensorController@getTempe:horature');
+Route::get('sensors/temperature', 'SensorController@getTemperature');
 Route::get('sensors/humidity', 'SensorController@getHumidity');
-Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumidityObject');
+Route::get('sensors/pressure', 'SensorController@getPressure');
+Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumidityPressureJsonObject');
 
 Route::get('device/{device}/{state}', function($device,$state){
 
