@@ -38,7 +38,7 @@ class Bme280
             }
 
         }
-        return false;
+        return null;
 
     }
 
@@ -64,7 +64,7 @@ class Bme280
             }
 
         }
-        return false;
+        return null;
 
     }
 
@@ -90,7 +90,7 @@ class Bme280
             }
 
         }
-        return false;
+        return null;
 
     }
 

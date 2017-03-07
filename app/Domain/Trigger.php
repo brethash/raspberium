@@ -27,6 +27,11 @@ class Trigger {
         $bme280 = new Bme280;
         $mistingSystem = new Device($this->devices['pump1']['pin']);
         $humidity = $bme280->getHumidity();
+
+        if ($humidity == null) {
+            return false;
+        }
+
         $threshold = $this->configurations['humidityThreshold'];
 
         // If the humidity is lower than the threshold, turn the misting system on
@@ -51,6 +56,11 @@ class Trigger {
         $bme280 = new Bme280();
         $fan = new Device($this->devices['fan1']['pin']);
         $temperature = $bme280->getTemperature();
+
+        if ($temperature == null) {
+            return false;
+        }
+
         $threshold = $this->configurations['temperatureThreshold'];
 
         if ($temperature > $threshold)
