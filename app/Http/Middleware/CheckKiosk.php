@@ -11,8 +11,8 @@ class CheckKiosk
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -24,30 +24,24 @@ class CheckKiosk
         $params = $request->all();
 
         // If there are no request params found but the kiosk session key exists, we're still in kiosk mode
-        if (!count($params) && Session::has($key))
-        {
+        if (!count($params) && Session::has($key)) {
             // If our session variable is enable, set kioskMode to true
             $sessionKiosk = Session::get($key);
 
-            if ($sessionKiosk == "enable")
-            {
+            if ($sessionKiosk == "enable") {
                 $kioskMode = true;
             }
 
         }
 
         // If there are request params
-        if (count($params))
-        {
+        if (count($params)) {
             // And one of them happens to be kiosk and its true
-            if ($request['kiosk'] == "enable")
-            {
+            if ($request['kiosk'] == "enable") {
                 // Setup kiosk mode!
                 Session::put($key, "enable");
                 $kioskMode = true;
-            }
-            else if ($request->kiosk == "disable")
-            {
+            } else if ($request->kiosk == "disable") {
                 // We no longer want kiosk mode enabled
                 Session::put($key, "disable");
             }
@@ -57,7 +51,7 @@ class CheckKiosk
         if ($kioskMode) {
             View::share(array('kiosk' => true));
         }
-        
+
         return $next($request);
     }
 }

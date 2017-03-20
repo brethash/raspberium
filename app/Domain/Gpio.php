@@ -1,5 +1,5 @@
 <?php
-    
+
 namespace Raspberium\Domain;
 
 use Raspberium\Contracts\Pin;
@@ -23,7 +23,7 @@ class Gpio implements Pin
     {
         // TODO: require this to be an int within the available GPIO range
         $this->pinId = $pinId;
-        $this->configurations =  Configuration::getData();
+        $this->configurations = Configuration::getData();
         $this->devices = Devices::getData();
     }
 

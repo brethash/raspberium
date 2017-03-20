@@ -10,14 +10,15 @@ use Raspberium\Models\HistoricalDataToday;
 use Raspberium\Models\HistoricalDataWeekly;
 use Raspberium\Models\HistoricalDataYearly;
 
-class Trigger {
+class Trigger
+{
 
     protected $configurations;
     protected $devices;
 
     public function __construct()
     {
-        $this->configurations =  Configuration::getData();
+        $this->configurations = Configuration::getData();
         $this->devices = Devices::getData();
     }
 
@@ -30,13 +31,10 @@ class Trigger {
         $threshold = $this->configurations['humidityThreshold'];
 
         // If the humidity is lower than the threshold, turn the misting system on
-        if ($humidity < $threshold)
-        {
+        if ($humidity < $threshold) {
             // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
             $on = $mistingSystem->on();
-        }
-        else
-        {
+        } else {
             // Turn the system off. We've reached terminal humidity!
             // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
             $off = $mistingSystem->off();
@@ -53,13 +51,10 @@ class Trigger {
         $temperature = $bme280->getTemperature();
         $threshold = $this->configurations['temperatureThreshold'];
 
-        if ($temperature > $threshold)
-        {
+        if ($temperature > $threshold) {
             // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
             $on = $fan->on();
-        }
-        else
-        {
+        } else {
             // Turn the system off. We've reached terminal humidity!
             // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
             $off = $fan->off();
@@ -95,7 +90,7 @@ class Trigger {
         $historicalDataToday = new HistoricalDataToday;
         $historicalDataToday->temperature = $bme280->getTemperature();
         $historicalDataToday->humidity = $bme280->getHumidity();
-        $historicalDataToday->recorded_at = date('Y-m-d H:i:s',strtotime('now'));
+        $historicalDataToday->recorded_at = date('Y-m-d H:i:s', strtotime('now'));
         $historicalDataToday->save();
     }
 
@@ -104,12 +99,12 @@ class Trigger {
         $todayData = HistoricalDataToday::all();
         /** @var HistoricalDataToday $todayData */
         $averages = $todayData->getAverages();
-        
+
         // Add our new average to our weekly 
         $newDailyData = new HistoricalDataDaily;
         $newDailyData->temperature = $averages->temperature;
         $newDailyData->humidity = $averages->humidity;
-        $newDailyData->recorded_at = date('Y-m-d',strtotime('now'));
+        $newDailyData->recorded_at = date('Y-m-d', strtotime('now'));
         $newDailyData->save();
 
         // Truncate the data from today's record.
@@ -126,7 +121,7 @@ class Trigger {
         $newWeeklyData = new HistoricalDataWeekly;
         $newWeeklyData->temperature = $averages->temperature;
         $newWeeklyData->humidity = $averages->humidity;
-        $newWeeklyData->recorded_at = date('Y-m-d',strtotime('now'));
+        $newWeeklyData->recorded_at = date('Y-m-d', strtotime('now'));
         $newWeeklyData->save();
 
         // Truncate the data from the daily record
@@ -143,7 +138,7 @@ class Trigger {
         $newMonthlyData = new HistoricalDataMonthly;
         $newMonthlyData->temperature = $averages->temperature;
         $newMonthlyData->humidity = $averages->humidity;
-        $newMonthlyData->recorded_at = date('Y-m-d',strtotime('now'));
+        $newMonthlyData->recorded_at = date('Y-m-d', strtotime('now'));
         $newMonthlyData->save();
 
         // Truncate the data from the weekly record
@@ -160,7 +155,7 @@ class Trigger {
         $newYearlyData = new HistoricalDataYearly;
         $newYearlyData->temperature = $averages->temperature;
         $newYearlyData->humidity = $averages->humidity;
-        $newYearlyData->recorded_at = date('Y-m-d',strtotime('now'));
+        $newYearlyData->recorded_at = date('Y-m-d', strtotime('now'));
         $newYearlyData->save();
 
         // Truncate the data from the monthly record

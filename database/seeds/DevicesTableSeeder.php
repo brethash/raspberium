@@ -78,8 +78,7 @@ class DevicesTableSeeder extends Seeder
             ],
         );
 
-        foreach ($configurations as $config)
-        {
+        foreach ($configurations as $config) {
             Devices::create([
                 'name' => $config['name'],
                 'niceName' => $config['niceName'],

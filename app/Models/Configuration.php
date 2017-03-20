@@ -18,20 +18,20 @@ class Configuration extends Model
     {
 
         $configurations = Configuration::all();
-        
+
         return [
-            'temperatureThreshold' => $configurations->where('name','temperatureThreshold')->first()['setting'],
-            'humidityThreshold' => $configurations->where('name','humidityThreshold')->first()['setting'],
-            'light1On' => $configurations->where('name','light1On')->first()['setting'],
-            'light1Off' => $configurations->where('name','light1Off')->first()['setting'],
-            'light2On' => $configurations->where('name','light2On')->first()['setting'],
-            'light2Off' => $configurations->where('name','light2Off')->first()['setting'],
-            'light1Pin' => $configurations->where('name','light1Pin')->first()['setting'],
-            'light2Pin' => $configurations->where('name','light2Pin')->first()['setting'],
-            'fan1Pin' => $configurations->where('name','fan1Pin')->first()['setting'],
-            'mistingSystem1Pin' => $configurations->where('name','mistingSystem1Pin')->first()['setting'],
+            'temperatureThreshold' => $configurations->where('name', 'temperatureThreshold')->first()['setting'],
+            'humidityThreshold' => $configurations->where('name', 'humidityThreshold')->first()['setting'],
+            'light1On' => $configurations->where('name', 'light1On')->first()['setting'],
+            'light1Off' => $configurations->where('name', 'light1Off')->first()['setting'],
+            'light2On' => $configurations->where('name', 'light2On')->first()['setting'],
+            'light2Off' => $configurations->where('name', 'light2Off')->first()['setting'],
+            'light1Pin' => $configurations->where('name', 'light1Pin')->first()['setting'],
+            'light2Pin' => $configurations->where('name', 'light2Pin')->first()['setting'],
+            'fan1Pin' => $configurations->where('name', 'fan1Pin')->first()['setting'],
+            'mistingSystem1Pin' => $configurations->where('name', 'mistingSystem1Pin')->first()['setting'],
         ];
-        
+
     }
 
     /**
@@ -42,8 +42,7 @@ class Configuration extends Model
      */
     public static function saveConfiguration($request)
     {
-        foreach($request as $key => $value)
-        {
+        foreach ($request as $key => $value) {
             Configuration::where('name', $key)
                 ->update(['setting' => $value]);
 

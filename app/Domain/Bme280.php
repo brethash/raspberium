@@ -27,13 +27,12 @@ class Bme280
 
         $bme280 = Cache::get('bme280Humidity');
 
-        if ($bme280 == null)
-        {
+        if ($bme280 == null) {
             $return_var = 0;
-            exec('sudo python ' . $this->getBme280BasePath() . 'humidity.py', $output, $return_var);
+            exec('sudo python ' . $this->getBme280ScriptPath() . 'humidity.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
             if ($return_var == 0) {
-                Cache::put('bme280Humidity',$output, 0.0333);
+                Cache::put('bme280Humidity', $output, 0.0333);
                 return $output[0];
             }
 
@@ -52,14 +51,13 @@ class Bme280
 
         $bme280 = Cache::get('bme280Temperature');
 
-        if ($bme280 == null)
-        {
-        echo "<pre>";
+        if ($bme280 == null) {
+            echo "<pre>";
             $return_var = 0;
-            exec('sudo python ' . $this->getBme280BasePath() . 'temperature.py', $output, $return_var);
+            exec('sudo python ' . $this->getBme280ScriptPath() . 'temperature.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
             if ($return_var == 0) {
-                Cache::put('bme280Temperature',$output, 0.0333);
+                Cache::put('bme280Temperature', $output, 0.0333);
                 return $output[0];
             }
 
@@ -78,14 +76,13 @@ class Bme280
 
         $bme280 = Cache::get('bme280Pressure');
 
-        if ($bme280 == null)
-        {
+        if ($bme280 == null) {
             $return_var = 0;
-            exec('sudo python ' . $this->getBme280BasePath() . 'pressure.py', $output, $return_var);
+            exec('sudo python ' . $this->getBme280ScriptPath() . 'pressure.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
 
             if ($return_var == 0) {
-                Cache::put('bme280Pressure',$output, 0.0333);
+                Cache::put('bme280Pressure', $output, 0.0333);
                 return $output[0];
             }
 
@@ -103,8 +100,7 @@ class Bme280
     {
         $bme280json = Cache::get('bme280json');
 
-        if ($bme280json == null)
-        {
+        if ($bme280json == null) {
             // bme280 reading doesn't exist in the cache
             $output = new \stdClass();
             $output->humidity = $this->getHumidity();
@@ -120,7 +116,7 @@ class Bme280
 
     }
 
-    private function getBme280BasePath()
+    private function getBme280ScriptPath()
     {
         return $_SERVER['DOCUMENT_ROOT'] . '/bme280/';
     }

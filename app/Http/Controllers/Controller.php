@@ -13,6 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $configuration;
+
     public function __construct()
     {
         $this->configuration = Configuration::getData();

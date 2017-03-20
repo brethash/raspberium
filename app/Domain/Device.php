@@ -12,14 +12,14 @@ class Device extends Gpio
      *
      * @return bool
      */
-    public function on() {
+    public function on()
+    {
         $on = $this->setHigh($this->getPinId());
 
         // Make sure the device turns on
-        if ($on)
-        {
+        if ($on) {
             // If we were able to turn the device on, then we can set the device back to on mode
-            $this->setState($this->getPinId(),'on');
+            $this->setState($this->getPinId(), 'on');
             return true;
         }
 
@@ -32,14 +32,14 @@ class Device extends Gpio
      *
      * @return bool
      */
-    public function off() {
+    public function off()
+    {
         $off = $this->setLow($this->getPinId());
 
         // Make sure the device turns off
-        if ($off)
-        {
+        if ($off) {
             // If we were able to turn the device off, then we can set the device back to off mode
-            $this->setState($this->getPinId(),'off');
+            $this->setState($this->getPinId(), 'off');
             return true;
         }
 
@@ -52,21 +52,21 @@ class Device extends Gpio
      *
      * @return bool
      */
-    public function timer() {
+    public function timer()
+    {
         $off = $this->setLow($this->getPinId());
 
         // Make sure the device turns off
-        if ($off)
-        {
+        if ($off) {
             // If we were able to turn the device off, then we can set the device back to timer mode
-            $this->setState($this->getPinId(),'timer');
+            $this->setState($this->getPinId(), 'timer');
             return true;
         }
 
         // The device didn't get turned off. Send help.
         return false;
     }
-    
+
     public function getPump1Pin()
     {
         $device = $this->devices;
@@ -90,10 +90,10 @@ class Device extends Gpio
         $device = $this->devices;
         return $device['fan1']['pin'];
     }
-    
-    private function setState($pin,$state)
+
+    private function setState($pin, $state)
     {
         $devices = new Devices;
-        $devices->setState($pin,$state);
+        $devices->setState($pin, $state);
     }
 }

@@ -39,8 +39,7 @@ class ConfigurationsTableSeeder extends Seeder
             ],
         );
 
-        foreach ($configurations as $config)
-        {
+        foreach ($configurations as $config) {
             Configuration::create([
                 'name' => $config['name'],
                 'setting' => $config['setting']

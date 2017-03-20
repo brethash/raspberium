@@ -33,15 +33,13 @@ class HistoricalData extends Model
     {
         $data = self::all();
         $output = [];
-        if ($data->count() > 0)
-        {
-            foreach ($data as $d)
-            {
-                $output[] = "[new Date(('" . $d['recorded_at'] . "').replace(/-/g, '/'))," . $d['temperature'] . "," . $d['humidity'] ."]";
+        if ($data->count() > 0) {
+            foreach ($data as $d) {
+                $output[] = "[new Date(('" . $d['recorded_at'] . "').replace(/-/g, '/'))," . $d['temperature'] . "," . $d['humidity'] . "]";
             }
         }
 
-        return join(',',$output);
+        return join(',', $output);
     }
 
 }

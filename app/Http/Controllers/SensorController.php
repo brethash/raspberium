@@ -29,7 +29,7 @@ class SensorController extends Controller
         $bme280 = new Bme280;
         echo $bme280->getPressure();
     }
-    
+
     public function getTemperatureHumidityPressureJsonObject()
     {
         $bme280 = new Bme280;
