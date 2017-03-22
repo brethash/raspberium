@@ -52,7 +52,6 @@ class Bme280
         $bme280 = Cache::get('bme280Temperature');
 
         if ($bme280 == null) {
-            echo "<pre>";
             $return_var = 0;
             exec('sudo python ' . $this->getBme280ScriptPath() . 'temperature.py', $output, $return_var);
             // TODO: check if this is a valid number value before caching it
