@@ -11,7 +11,7 @@ class Configuration extends Model
 
     /**
      * Returns array of configuration values for the front end to display.
-     *
+     * // TODO: refactor this monster.
      * @return array
      */
     public static function getData()

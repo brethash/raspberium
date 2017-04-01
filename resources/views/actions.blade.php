@@ -30,11 +30,11 @@
                                         data-state="on"
 
                                 >Turn Light 1 On</button>
-                                <button class="btn btn-default @if ($light1['state'] == 'timer') btn-primary @endif "
+                                <button class="btn btn-default @if ($light1['state'] == 'auto') btn-primary @endif "
                                         id="light1Timer"
                                         data-device="light1"
-                                        data-state="timer"
-                                >Timer</button>
+                                        data-state="auto"
+                                >Auto</button>
                                 <button class="btn btn-default @if ($light1['state'] == 'off') btn-primary @endif "
                                         id="light1Off"
                                         data-device="light1"
@@ -49,11 +49,11 @@
                                         data-device="light2"
                                         data-state="on"
                                 >Turn Light 2 On</button>
-                                <button class="btn btn-default @if ($light2['state'] == 'timer') btn-primary @endif "
+                                <button class="btn btn-default @if ($light2['state'] == 'auto') btn-primary @endif "
                                         id="light2Timer"
                                         data-device="light2"
-                                        data-state="timer"
-                                >Timer</button>
+                                        data-state="auto"
+                                >Auto</button>
                                 <button class="btn btn-default @if ($light2['state'] == 'off') btn-primary @endif "
                                         id="light2Off"
                                         data-device="light2"
@@ -71,11 +71,11 @@
                                         data-device="pump1"
                                         data-state="on"
                                 >Turn Pump On</button>
-                                <button class="btn btn-default @if ($pump1['state'] == 'timer') btn-primary @endif "
+                                <button class="btn btn-default @if ($pump1['state'] == 'auto') btn-primary @endif "
                                         id="pump1Timer"
                                         data-device="pump1"
-                                        data-state="timer"
-                                >Timer</button>
+                                        data-state="auto"
+                                >Auto</button>
                                 <button class="btn btn-default @if ($pump1['state'] == 'off') btn-primary @endif "
                                         id="pump1Off"
                                         data-device="pump1"
@@ -93,11 +93,11 @@
                                         data-device="fan1"
                                         data-state="on"
                                 >Turn Fan On</button>
-                                <button class="btn btn-default @if ($fan1['state'] == 'timer') btn-primary @endif "
+                                <button class="btn btn-default @if ($fan1['state'] == 'auto') btn-primary @endif "
                                         id="fan1Timer"
                                         data-device="fan1"
-                                        data-state="timer"
-                                >Timer</button>
+                                        data-state="auto"
+                                >Auto</button>
                                 <button class="btn btn-default @if ($fan1['state'] == 'off') btn-primary @endif "
                                         id="fan1Off"
                                         data-device="fan1"
