@@ -34,7 +34,7 @@ class Trigger
         $state = $pump1['state'];
 
         // If we're in auto mode, lets check out headlights on this automobile
-        if ($state == 'timer') {
+        if ($state == 'auto') {
             // If the humidity is lower than the threshold, turn the misting system on
             if ($humidity < $threshold) {
                 // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
@@ -61,7 +61,7 @@ class Trigger
         $state = $fan1['state'];
 
         // If we're in auto mode, lets check out headlights on this automobile
-        if ($state == 'timer') {
+        if ($state == 'auto') {
             if ($temperature > $threshold) {
                 // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
                 $on = $fan->on();
