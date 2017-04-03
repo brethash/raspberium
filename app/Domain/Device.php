@@ -8,18 +8,19 @@ class Device extends Gpio
 {
 
     /**
-     * Switches the device to "on" mode
+     * Switches the device to the "on" state
      *
      * @return bool
      */
-    public function on()
+    public function setOn()
     {
-        $on = $this->setHigh($this->getPinId());
+        $pinId = $this->getPinId();
+        $on = $this->setHigh($pinId);
 
         // Make sure the device turns on
         if ($on) {
-            // If we were able to turn the device on, then we can set the device back to on mode
-            $this->setState($this->getPinId(), 'on');
+            $this->setStatus($pinId, 'on');
+            $this->setState($pinId, 'on');
             return true;
         }
 
@@ -28,17 +29,18 @@ class Device extends Gpio
     }
 
     /**
-     * Switches the device to "off" mode
+     * Switches the device to the "off" state
      *
      * @return bool
      */
-    public function off()
+    public function setOff()
     {
-        $off = $this->setLow($this->getPinId());
+        $pinId = $this->getPinId();
+        $off = $this->setLow($pinId);
 
         // Make sure the device turns off
         if ($off) {
-            // If we were able to turn the device off, then we can set the device back to off mode
+            $this->setStatus($pinId, 'off');
             $this->setState($this->getPinId(), 'off');
             return true;
         }
@@ -48,17 +50,18 @@ class Device extends Gpio
     }
 
     /**
-     * Switches the device to "timer" mode
+     * Switches the device to the "auto" state
      *
      * @return bool
      */
-    public function auto()
+    public function setAuto()
     {
-        $off = $this->setLow($this->getPinId());
+        $pinId = $this->getPinId();
+        $off = $this->setLow($pinId);
 
         // Make sure the device turns off
         if ($off) {
-            // If we were able to turn the device off, then we can set the device back to timer mode
+            $this->setStatus($pinId, 'off');
             $this->setState($this->getPinId(), 'auto');
             return true;
         }
@@ -95,5 +98,11 @@ class Device extends Gpio
     {
         $devices = new Devices;
         $devices->setState($pin, $state);
+    }
+
+    public function setStatus($pin, $status)
+    {
+        $devices = new Devices;
+        $devices->setState($pin, $status);
     }
 }
