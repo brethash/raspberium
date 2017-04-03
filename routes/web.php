@@ -47,16 +47,18 @@ Route::get('device/{device}/{state}', function($device,$state){
 
         if ($state == "on")
         {
-            $deviceObject->on();
+            $deviceObject->setOn();
 
         }
         else if ($state == "auto")
         {
-            $deviceObject->auto();
+            $deviceObject->setAuto();
         }
         else
         {
-            $deviceObject->off();
+            // Set it off!!!
+            // https://www.youtube.com/watch?v=k225_q1L9l4
+            $deviceObject->setOff();
         }
 
         echo 'Success';
