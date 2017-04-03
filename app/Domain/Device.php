@@ -52,14 +52,14 @@ class Device extends Gpio
      *
      * @return bool
      */
-    public function timer()
+    public function auto()
     {
         $off = $this->setLow($this->getPinId());
 
         // Make sure the device turns off
         if ($off) {
             // If we were able to turn the device off, then we can set the device back to timer mode
-            $this->setState($this->getPinId(), 'timer');
+            $this->setState($this->getPinId(), 'auto');
             return true;
         }
 

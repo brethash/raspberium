@@ -36,25 +36,27 @@ Route::get('sensors/humidity', 'SensorController@getHumidity');
 Route::get('sensors/pressure', 'SensorController@getPressure');
 Route::get('sensors/temperature-humidity', 'SensorController@getTemperatureHumidityPressureJsonObject');
 
+// TODO: return proper responses
+
 Route::get('device/{device}/{state}', function($device,$state){
 
     try {
         // Look up device pin by name
         $devices = Devices::getData();
-        $device = new Device($devices[$device]['pin']);
+        $deviceObject = new Device($devices[$device]['pin']);
 
         if ($state == "on")
         {
-            $device->on();
-            
+            $deviceObject->on();
+
         }
-        else if ($state == "timer")
+        else if ($state == "auto")
         {
-            $device->timer();
+            $deviceObject->auto();
         }
         else
         {
-            $device->off();
+            $deviceObject->off();
         }
 
         echo 'Success';
