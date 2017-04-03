@@ -10,6 +10,7 @@ use Raspberium\Models\HistoricalDataToday;
 use Raspberium\Models\HistoricalDataWeekly;
 use Raspberium\Models\HistoricalDataYearly;
 
+// TODO: Refactor checkTemperature and checkHumidity and maybe the lights
 class Trigger
 {
 
@@ -26,19 +27,25 @@ class Trigger
     {
         /** @var Bme280 $bme280 */
         $bme280 = new Bme280;
-        $mistingSystem = new Device($this->devices['pump1']['pin']);
+        $pump1 = $this->devices['pump1'];
+        $mistingSystem = new Device($pump1['pin']);
         $humidity = $bme280->getHumidity();
         $threshold = $this->configurations['humidityThreshold'];
+        $state = $pump1['state'];
 
-        // If the humidity is lower than the threshold, turn the misting system on
-        if ($humidity < $threshold) {
-            // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
-            $on = $mistingSystem->on();
-        } else {
-            // Turn the system off. We've reached terminal humidity!
-            // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-            $off = $mistingSystem->off();
+        // If we're in auto mode, lets check out headlights on this automobile
+        if ($state == 'timer') {
+            // If the humidity is lower than the threshold, turn the misting system on
+            if ($humidity < $threshold) {
+                // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
+                $on = $mistingSystem->on();
+            } else {
+                // Turn the system off. We've reached terminal humidity!
+                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+                $off = $mistingSystem->off();
+            }
         }
+
 
         return true;
     }
@@ -47,17 +54,22 @@ class Trigger
     {
         /** @var Bme280 $bme280 */
         $bme280 = new Bme280();
-        $fan = new Device($this->devices['fan1']['pin']);
+        $fan1 = $this->devices['fan1'];
+        $fan = new Device($fan1['pin']);
         $temperature = $bme280->getTemperature();
         $threshold = $this->configurations['temperatureThreshold'];
+        $state = $fan1['state'];
 
-        if ($temperature > $threshold) {
-            // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
-            $on = $fan->on();
-        } else {
-            // Turn the system off. We've reached terminal humidity!
-            // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-            $off = $fan->off();
+        // If we're in auto mode, lets check out headlights on this automobile
+        if ($state == 'timer') {
+            if ($temperature > $threshold) {
+                // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
+                $on = $fan->on();
+            } else {
+                // Turn the system off. We've reached terminal humidity!
+                // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
+                $off = $fan->off();
+            }
         }
 
         return true;
@@ -65,21 +77,40 @@ class Trigger
 
     public function lightsOn()
     {
-        $light1 = new Device($this->devices['light1']['pin']);
-        $light2 = new Device($this->devices['light2']['pin']);
+        $light1 = $this->devices['light1'];
+        $light1Device = new Device($light1['pin']);
 
-        $light1->on();
-        $light2->on();
+        $light2 = $this->devices['light2'];
+        $light2Device = new Device($light2['pin']);
+
+        if ($light1['state'] == 'timer') {
+            $light1Device->on();
+        }
+
+        if ($light2['state'] == 'timer') {
+            $light2Device->on();
+        }
+
         return true;
     }
 
     public function lightsOff()
     {
-        $light1 = new Device($this->devices['light1']['pin']);
-        $light2 = new Device($this->devices['light2']['pin']);
 
-        $light1->off();
-        $light2->off();
+        $light1 = $this->devices['light1'];
+        $light1Device = new Device($light1['pin']);
+
+        $light2 = $this->devices['light2'];
+        $light2Device = new Device($light2['pin']);
+
+        if ($light1['state'] == 'timer') {
+            $light1Device->off();
+        }
+
+        if ($light2['state'] == 'timer') {
+            $light2Device->off();
+        }
+
         return true;
     }
 

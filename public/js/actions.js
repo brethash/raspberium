@@ -1,8 +1,8 @@
 $(function(){
     $('.button-box button').click(function(e){
         e.preventDefault();
-        $this = $(this);
-        $alertMessage = $('.alert-box h2');
+        var $this = $(this);
+        var $alertMessage = $('.alert-box h2');
         $.get({
             url: '/device/' + $this.data('device') + '/' + $this.data('state'),
             success: function(data){
