@@ -38,11 +38,11 @@ class Trigger
             // If the humidity is lower than the threshold, turn the misting system on
             if ($humidity < $threshold) {
                 // TODO: if $on == false then send an alert to someone telling them that their shit wont turn on!
-                $on = $mistingSystem->on();
+                $on = $mistingSystem->setStatus($mistingSystem->getPinId(),'on');
             } else {
                 // Turn the system off. We've reached terminal humidity!
                 // TODO: if $off == false then send an alert to someone telling them that their shit wont turn off!
-                $off = $mistingSystem->off();
+                $off = $mistingSystem->setStatus($mistingSystem->getPinId(),'off');
             }
         }
 
